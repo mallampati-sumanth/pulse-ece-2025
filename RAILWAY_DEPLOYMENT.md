@@ -16,7 +16,7 @@ First, push your code to GitHub following the instructions in `GITHUB_SETUP.md`:
 
 ```bash
 # Create repository on GitHub first, then:
-git remote add origin https://github.com/YOUR_USERNAME/pulse-student-management.git
+git remote add origin https://github.com/mallampati-sumanth/pulse-ece-2025.git
 git branch -M main
 git push -u origin main
 ```
@@ -37,7 +37,7 @@ git push -u origin main
 2. Click "New Project"
 3. Select "Deploy from GitHub repo"
 4. Connect your GitHub account if not already connected
-5. Select your `pulse-student-management` repository
+5. Select your `pulse-ece-2025` repository
 6. Railway will automatically detect it's a Node.js project
 
 #### Option B: Deploy from Template
@@ -55,15 +55,15 @@ In your Railway project dashboard:
 2. Add these environment variables:
 
 ```
-DB=mongodb+srv://username:password@cluster.mongodb.net/pulse-db
+DB=mongodb+srv://username:password@cluster.mongodb.net/pulse-db?retryWrites=true&w=majority&appName=pulse-cluster&ssl=true&tlsInsecure=true
 DB_PASSWORD=your_actual_mongodb_password
-SECRET=your-super-secret-session-key-make-it-very-long-and-random
+SECRET=pulse_secret_key_2025_super_secure_key
 PORT=4000
 GMAIL_USER=msumanth117@gmail.com
 GMAIL_CLIENT_ID=your-gmail-oauth-client-id
 GMAIL_CLIENT_SECRET=your-gmail-oauth-client-secret
 GMAIL_REFRESH_TOKEN=your-gmail-oauth-refresh-token
-JWT_SECRET=another-super-secret-jwt-key-very-long
+JWT_SECRET=pulse_jwt_secret_key_2025_very_secure
 JWT_EXPIRES_IN=24h
 NODE_ENV=production
 ```

@@ -16,13 +16,13 @@
 
 ## Environment Variables to Set in Railway
 ```
-DB=mongodb+srv://username:password@cluster.mongodb.net/pulse-db
-SECRET=your-super-secret-session-key
+DB=mongodb+srv://username:password@cluster.mongodb.net/pulse-db?retryWrites=true&w=majority&appName=pulse-cluster&ssl=true&tlsInsecure=true
+SECRET=pulse_secret_key_2025_super_secure_key
 GMAIL_USER=msumanth117@gmail.com
 GMAIL_CLIENT_ID=your-gmail-oauth-client-id
 GMAIL_CLIENT_SECRET=your-gmail-oauth-client-secret
 GMAIL_REFRESH_TOKEN=your-gmail-oauth-refresh-token
-JWT_SECRET=your-jwt-secret-key
+JWT_SECRET=pulse_jwt_secret_key_2025_very_secure
 NODE_ENV=production
 ```
 
@@ -54,4 +54,4 @@ npm run setup-db
 ## Support URLs
 - Railway Dashboard: https://railway.app/dashboard
 - MongoDB Atlas: https://cloud.mongodb.com
-- GitHub Repository: https://github.com/YOUR_USERNAME/pulse-student-management
+- GitHub Repository: https://github.com/mallampati-sumanth/pulse-ece-2025
