@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background: #e6fcf5;
+  font-family: 'Poppins', sans-serif;
+}
+*::placeholder {
+  color: #fff;
+}
+.svg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.login_container {
+  max-width: 500px;
+  margin: 100px auto;
+}
+.login_container h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+}
+.login_container em {
+  font-size: clamp(1rem, 10vw, 1.5rem);
+  margin: 10px 0;
+  display: block;
+  text-align: center;
+}
+.input_control {
+  margin: 40px auto;
+  width: 70%;
+}
+.input_control input {
+  width: 100%;
+  padding: 10px 20px;
+  background: #224957;
+  font-size: 1.6rem;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+}
+.input_control input:focus {
+  border-bottom: 3px solid #7ed56f;
+}
+
+.input_control input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+.btn {
+  width: 100%;
+  background: #20df7f;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: clamp(1rem, 100vw, 2rem);
+  font-weight: 600;
+  padding: 5px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+.forgotpassword a {
+  display: inline-block;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #224957;
+}

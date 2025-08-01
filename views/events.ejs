@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Protest+Revolution&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./../imgs/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="./../imgs/apple-touch-icon.png" />
+    <link rel="manifest" href="./../imgs/site.webmanifest" />
+    <link rel="stylesheet" href="/styles/events.css" />
+  </head>
+  <body>
+    
+    <div class="loader_container">
+      <div class="svg_container-loader">
+        <svg
+          class="res_cap_svg"
+          width="484"
+          height="53"
+          viewBox="0 0 484 53"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="resistor"
+            d="M0 22.432H21.3213L34.6243 9L57.4035 32L80.1826 9L102.962 32L125.741 9L148.52 32L157.996 22.432H182"
+            stroke="white"
+            stroke-width="1.1"
+          />
+          <path
+            class="inductor"
+            d="M294 22.8416H326C327.833 14.6749 334.2 -1.05844 345 1.34156C358.5 4.34156 359 42.8416 352 50.8416C345 58.8416 341.5 6.34155 367 1.34156C392.5 -3.65842 379.5 47.8416 377 50.8416C374.5 53.8416 367 3.84155 396 1.34156C425 -1.15842 405 60.8416 402 50.8416C399 40.8416 404.5 1.34156 423.5 1.34156C442.5 1.34156 434 62.8416 430 50.8416C426.8 41.2416 434.667 28.1749 439 22.8416H483.5"
+            stroke="white"
+          />
+        </svg>
+        <svg
+          class="capacitor_svg"
+          width="184"
+          height="63"
+          viewBox="0 0 90 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path class="capacitor" d="M0 15.5H40V31V0" />
+          <path
+            class="capacitor"
+            d="M89.0841 15.7184L49.0847 15.4998L49.1695 1.36718e-06L49 30.9995"
+          />
+        </svg>
+      </div>
+    </div>
+    <div class="navbar">
+      <span></span>
+      <div class="pulse_logo">
+<a href="/">
+        <img src="./../imgs/pulse-logo.png" alt="" />
+
+</a>
+      </div>
+      <div class="nav_menu">
+        <ul class="nav_items">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/aboutus">About</a></li>
+          <li class="nav-item"><a href="/events">Events</a></li>
+          <li class="nav-item"><a href="/club">Clubs</a></li>
+          <li class="nav-item"><a href="/gallery">Gallery</a></li>
+          <li class="nav-item"><a href="/faculty-core">Faculty</a></li>
+          <li class="nav-item"><a href="/blood">Blood</a></li>
+          <li class="nav-item"><a href="/team">Team</a></li>
+          <li class="nav-item"><a href="/contactus">Contact</a></li>
+          <% if(typeof session.user === 'undefined' || !session.user) {%>
+          <li class="nav-item"><a href="/signin">Sign in</a></li>
+          <li class="nav-item"><a href="/signup">Sign up</a></li>
+          <%}%> <% if(typeof session.user !== 'undefined' && session.user) {%>
+          <li class="nav-item"><a href="/profile">Profile</a></li>
+          <li class="nav-item"><a href="/logout">Logout</a></li>
+
+          <%}%>
+          <li>
+            <ul class="socialmedia-icon">
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+    </div>
+   <section class="events">
+      <svg class="cursor" width="100" height="100" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+   
+      <div class="events_title">
+        <h1>EVENTS ORGANIZED BY TEAM PULSE</h1>
+      </div>
+
+      <div class="events_container">
+        <div class="event event--left event1">
+          <div class="event_poster">
+            <img src="./../imgs/events/events-schedule1-black.jpeg" alt="">
+            <img src="./../imgs/events/events-schedule1.jpeg" alt="">
+          </div>
+          <div class="event_info">
+            <div class="event_title">
+              <h2>TEJOMAYAM 2024</h2>
+            </div>
+            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
+
+            <div class="explore">
+              <a href="/gallery"
+                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
+              ></a>
+            </div>
+            <div class="event_register">
+              <a href="#">Register</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="event event--right event2">
+          <div class="event_info">
+            <div class="event_title">
+              <h2>Musically Mad</h2>
+            </div>
+            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
+
+            <div class="explore">
+              <a href="/gallery"
+                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
+              ></a>
+            </div>
+            <div class="event_register">
+              <a href="#">Register</a>
+            </div>
+          </div>
+          <div class="event_poster">
+            <img src="./../imgs/events/events-schedule2-black.jpeg" alt="">
+            <img src="./../imgs/events/events-schedule2.jpeg" alt="">
+          </div>
+        </div>
+
+        <div class="event event--left event3">
+          <div class="event_poster">
+            <img src="/imgs/events/events-schedule3-black.jpeg" alt="">
+            <img src="/imgs/events/events-schedule3.jpeg" alt="">
+          </div>
+          <div class="event_info">
+            <div class="event_title">
+              <h2>Idol of ECE 2024</h2>
+            </div>
+            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
+
+            <div class="explore">
+              <a href="/gallery"
+                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
+              ></a>
+            </div>
+            <div class="event_register">
+              <a href="#">Register</a>
+            </div>
+          </div>
+        </div>
+         <div class="join__pulse">
+        <div class="join__pulse-bg"></div>
+        <a href="/joinpulse" class="join__pulse-btn"></a>
+      </div>
+      </div>
+        <div class="contact_footer">
+        <div class="footer_logo">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+        </div>
+        <div class="footer_content">
+          <ul class="socialmedia-icon-map">
+              <li class="socialmedia_icons-map">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons-map">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons-map">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons-map">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        </div>
+      </div>
+     
+    </section>
+     <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/scripts/hover-effect.umd.js"></script>
+    <script src="/scripts/cursor-hover.js"></script>
+    <script src="/scripts/events.js"></script>
+  </body>
+</html>

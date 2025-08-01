@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./../imgs/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="./../imgs/apple-touch-icon.png" />
+    <link rel="manifest" href="./../imgs/site.webmanifest" />
+    <title>Pulse</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/blood.css" />
+  </head>
+  <body>
+    <div class="loader_container">
+      <div class="svg_container-loader">
+        <svg
+          class="res_cap_svg"
+          width="484"
+          height="53"
+          viewBox="0 0 484 53"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="resistor"
+            d="M0 22.432H21.3213L34.6243 9L57.4035 32L80.1826 9L102.962 32L125.741 9L148.52 32L157.996 22.432H182"
+            stroke="white"
+            stroke-width="1.1"
+          />
+          <path
+            class="inductor"
+            d="M294 22.8416H326C327.833 14.6749 334.2 -1.05844 345 1.34156C358.5 4.34156 359 42.8416 352 50.8416C345 58.8416 341.5 6.34155 367 1.34156C392.5 -3.65842 379.5 47.8416 377 50.8416C374.5 53.8416 367 3.84155 396 1.34156C425 -1.15842 405 60.8416 402 50.8416C399 40.8416 404.5 1.34156 423.5 1.34156C442.5 1.34156 434 62.8416 430 50.8416C426.8 41.2416 434.667 28.1749 439 22.8416H483.5"
+            stroke="white"
+          />
+        </svg>
+        <svg
+          class="capacitor_svg"
+          width="184"
+          height="63"
+          viewBox="0 0 90 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path class="capacitor" d="M0 15.5H40V31V0" />
+          <path
+            class="capacitor"
+            d="M89.0841 15.7184L49.0847 15.4998L49.1695 1.36718e-06L49 30.9995"
+          />
+        </svg>
+      </div>
+    </div>
+    <svg class="cursor" width="100" height="100" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+    <!-------------------------------------------------------------------------------------->
+    <div class="navbar">
+      <span></span>
+      <div class="pulse_logo">
+        <a href="/">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+        </a>
+      </div>
+      <div class="nav_menu">
+        <ul class="nav_items">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/aboutus">About</a></li>
+          <li class="nav-item"><a href="/events">Events</a></li>
+          <li class="nav-item"><a href="/club">Clubs</a></li>
+          <li class="nav-item"><a href="/gallery">Gallery</a></li>
+          <li class="nav-item"><a href="/faculty-core">Faculty</a></li>
+          <li class="nav-item"><a href="/blood">Blood</a></li>
+          <li class="nav-item"><a href="/team">Team</a></li>
+          <li class="nav-item"><a href="/contactus">Contact</a></li>
+          <% if(typeof session.user === 'undefined' || !session.user) {%>
+          <li class="nav-item"><a href="/signin">Sign in</a></li>
+          <li class="nav-item"><a href="/signup">Sign up</a></li>
+          <%}%> <% if(typeof session.user !== 'undefined' && session.user) {%>
+          <li class="nav-item"><a href="/profile">Profile</a></li>
+          <li class="nav-item"><a href="/logout">Logout</a></li>
+
+          <%}%>
+          <li>
+            <ul class="socialmedia-icon">
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+    </div>
+    <!-------------------------------------------------------------------------------------->
+    <section class="blood_section">
+      <div class="blood_svg">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 256 256"
+          enable-background="new 0 0 256 256"
+          xml:space="preserve"
+        >
+          <metadata>
+            Svg Vector Icons : http://www.onlinewebfonts.com/icon
+          </metadata>
+          <g>
+            <g>
+              <g>
+                <path
+                  class="blood"
+                  d="M158.3,10.7c-0.4,0.4-0.8,1.2-0.8,1.8c0,1.9-2.4,7.8-4.7,11.9c-2.9,4.9-7.8,11.8-16.2,22.4c-19.4,24.6-25.4,34.5-28,46.5c-1.3,5.8-0.8,18,0.9,24.3c5.7,20.3,22.2,35.2,42.8,38.5c5.4,0.9,16.2,0.4,21.3-1c15.2-4.1,27.4-14.2,34.2-28.2c3.1-6.3,4.3-10.8,5-18.2c1-10.3-0.8-18.9-6.3-29.3c-4-7.6-9.3-15-21.1-29.7c-5.8-7.2-12-15.2-13.7-17.7c-4.1-5.8-8.4-14.1-9.2-17.9c-0.3-1.6-0.8-3.2-1.1-3.5C160.7,9.7,159.3,9.8,158.3,10.7z"
+                  stroke="#ffffff"
+                />
+                <path
+                  class="hand"
+                  stroke="#ffffff"
+                  d="M12.3,143.1c-0.7,0.4-1.5,1.3-1.9,2.1c-0.4,1-0.5,11.1-0.4,37.9l0.1,36.6l1.4,1.2c1.4,1.2,1.5,1.2,11.9,1.2c10.4,0,10.5,0,11.9-1.2l1.4-1.2l0.1-36.6c0.1-26.9,0-36.9-0.4-37.9c-1-2.5-2.4-2.8-13.1-2.8C15.9,142.4,13.3,142.5,12.3,143.1z"
+                />
+                <path
+                  class="hand"
+                  stroke="#ffffff"
+                  d="M77.8,147.5c-10.3,1.3-28.2,5.2-31.5,6.9c-2.4,1.2-2.4,1.6-2.4,27.9c0,26.9,0,26.7,2.9,28.2c0.7,0.3,3,0.8,5,1c7.5,0.7,10.1,1.8,36.4,14.4c31.3,15.1,40.4,18.9,46.2,19.9c5,0.8,12.4,0.1,36.8-3.7c11.1-1.7,22.2-3.4,24.8-3.7c7.2-0.8,10.2-2.3,25-12.1c18.8-12.5,23.4-16.5,24.8-21.7c0.7-3,0.2-4.5-1.8-5.4c-0.9-0.4-1.7-0.8-1.7-1c0-0.1,0.6-1.1,1.4-2.1c2.2-2.9,2.6-3.9,2.3-6.1c-0.5-2.8-3.2-5.4-6.8-6.5c-7.3-2.3-17,0.9-25.3,8.3c-7.7,6.8-13.5,9.3-25.7,10.9c-13.3,1.8-25.6,1.8-33.2,0c-1.9-0.4-6.5-2.1-10.3-3.6c-3.8-1.6-7.8-3.2-8.9-3.6l-2-0.7l2.5-0.4c1.4-0.2,4.8-0.4,7.6-0.4c6-0.1,27.8,1,35.7,1.7c12.9,1.1,13.1,1.1,15.8-0.1c3.2-1.4,6.2-4.6,8.1-8.7c1.8-4,1.8-6.4,0.1-9.6c-2.5-4.5-6.3-6.6-16.6-9.3c-8.2-2.1-16.5-3.3-28.8-4.4c-6.2-0.5-12.3-1.2-13.5-1.5c-1.3-0.3-6.5-2.5-11.5-4.9c-9.9-4.8-17.2-7.4-24.5-8.9C102,146.9,85.9,146.5,77.8,147.5z"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="blood_container">
+        <div class="blood_title"></div>
+        <div class="blood_form_container">
+          <form action="/blood" method="post" class="blood_form">
+            <div class="blood_filter">
+              <h1 class="blood_filter_title">Filter</h1>
+            </div>
+
+            <div class="blood_filter">
+              <select name="bloodGrp" id="bloodGrp">
+                <option value="">Select blood group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+            <div class="blood_filter">
+              <button class="submit_btn">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="blood_info_table">
+          <table>
+            <thead>
+              <tr>
+                <th>S.no</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Phone</th>
+                <th>Blood Group</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+              <% users.forEach((user,i) =>{%>
+              <tr>
+                <td><%= i+1 %></td>
+                <td><%= user.name %></td>
+                <td><%= user.role %></td>
+                <td><%= user.phone %></td>
+                <td class="blood_group"><%= user.blood %></td>
+              </tr>
+              <% })%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/scripts/cursor-hover.js"></script>
+    <script src="/scripts/blood.js"></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #f8f9fa;
+  --font-black: #212529;
+  --aside-bg: #c3fae8;
+  --dark-bg: #63e6be;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background: var(--bg);
+  font-family: 'Poppins', sans-serif;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 10% 1fr;
+}
+header {
+  grid-row: 1/2;
+  grid-column: 1/-1;
+}
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  background: #e6fcf5;
+}
+
+.navbar .nav_logo img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+}
+.nav_items {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+.nav_item a {
+  text-decoration: none;
+  color: var(--font-black);
+  font-weight: 600;
+  font-size: 2rem;
+}
+.aside_container {
+  grid-row: 2/-1;
+  background: var(--aside-bg);
+  width: 20vw;
+  height: 90vh;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
+}
+.aside_title h1 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+}
+.aside_items {
+  list-style: none;
+}
+.aside_item {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+.aside_item a {
+  text-decoration: none;
+  color: var(--font-black);
+  font-size: 1.9rem;
+  font-weight: 500;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--dark-bg);
+}
+.aside_item:hover {
+  background: var(--dark-bg);
+}
+main {
+  grid-row: 2/3;
+  grid-column: 2/-1;
+}
+.cards_container {
+  margin: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.card_icon {
+  font-size: 5rem;
+  align-self: flex-end;
+  color: #fff;
+}
+.card {
+  width: 250px;
+  height: 150px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+}
+a {
+  text-decoration: none;
+  display: block;
+}
+.card-1 {
+  background: #099268;
+  border-radius: 20px;
+}
+.card-2 {
+  background: #f08c00;
+  border-radius: 20px;
+}
+.card-3 {
+  background: #e8590c;
+  border-radius: 20px;
+}
+.card-4 {
+  background: #e03131;
+  border-radius: 20px;
+}
+.card-5 {
+  background: #c2255c;
+  border-radius: 20px;
+}
+.card_title {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: start;
+}
+.card_title h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+.card_title h2 {
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 600;
+}

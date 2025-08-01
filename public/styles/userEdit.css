@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+:root {
+  --primary: #2f9e44;
+  --red: #f03e3e;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+/***************************************************************************************/
+.alert-msg span {
+  display: block;
+}
+.alert-msg,
+.alert-msg-success {
+  position: absolute;
+  display: flex;
+  top: 13%;
+  right: 5%;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  align-items: center;
+  font-size: 1.4rem;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  transform: translateX(0px);
+  transition: all 1s;
+}
+.alert-msg {
+  color: red;
+  border-left: 5px solid red;
+}
+.alert-msg-success {
+  color: #2f9e44;
+  border-left: 5px solid #2f9e44;
+}
+.alert-msg.active,
+.alert-msg-success.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-30px);
+}
+@media (max-width: 27em) {
+  .alert-msg,
+  .alert-msg-success {
+    font-size: 1rem;
+    top: 18%;
+    right: 0%;
+    transform: translateX(-2px);
+  }
+}
+@media (max-width: 27em) {
+  .alert-msg,
+  .alert-msg-success {
+    font-size: 1rem;
+    top: 18%;
+    right: 0%;
+    transform: translateX(-2px);
+  }
+}
+
+.edit_container {
+  max-width: 500px;
+  border: 1px solid #222;
+  margin: 50px auto;
+  padding: 10px;
+}
+.edit_title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2rem;
+}
+.input_control input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 2rem;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+}
+.input_control input:focus {
+  border-bottom: 3px solid var(--primary);
+}
+.input_control input:focus:invalid {
+  border-bottom: 3px solid var(--red);
+}
+.input_control button {
+  font-family: inherit;
+  font-size: 1.8rem;
+  padding: 5px 20px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  color: #eee;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}

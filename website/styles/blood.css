@@ -1,0 +1,217 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  font-size: 65.5%;
+}
+.blood_section {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-image: url('./../imgs/pulse-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  top: 0;
+}
+.blood_svg {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 30%;
+  height: 100vh;
+  opacity: 0.4;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+.blood_info_table {
+  overflow: scroll;
+}
+.blood_info_table::-webkit-scrollbar {
+  width: 0;
+}
+/* .pulse-bg {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  top: 0;
+}
+.pulse-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+} */
+
+.blood_filter_title {
+  font-size: 3rem;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #02e079;
+}
+.blood_form {
+  max-width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.blood_filter select {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  background: linear-gradient(to right, #69db7c, #40c057);
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.submit_btn {
+  position: relative;
+  background: #02e07836;
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #02e079;
+  overflow: hidden;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.submit_btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0;
+  top: 0;
+  background: #02e079;
+  transform: translate(-30px, 80px) rotate(10deg);
+  transition: all 0.3s ease-in;
+}
+.submit_btn::before {
+  content: 'Submit';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, 100%) rotate(10deg);
+  transition: all 0.3s ease-in;
+  z-index: 1;
+}
+.submit_btn:hover::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.submit_btn:hover::after {
+  width: 500%;
+  height: 900%;
+  left: -40%;
+  transform: translate(-30px, 0) rotate(10deg);
+}
+.blood_info_table {
+  max-width: 90%;
+  margin: 50px auto;
+}
+.blood_info_table table {
+  color: #fff;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.blood_info_table table thead th {
+  background: #02e079;
+  padding: 5px;
+}
+.blood_info_table table td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #fff;
+}
+.blood_info_table table .blood_group {
+  background: #69db7c;
+  color: #222;
+  font-weight: 600;
+}
+.blood {
+  fill: none;
+  stroke-width: 3px;
+  stroke-dashoffset: 400px;
+  stroke-dasharray: 400px;
+}
+/*1024*/
+@media (max-width: 64em) {
+  .blood_form {
+    max-width: 80%;
+  }
+}
+@media (max-width: 49em) {
+  html {
+    /*7/16*/
+    font-size: 43%;
+  }
+  .blood_info_table {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .blood_info_table table {
+    width: 100%;
+  }
+  .blood_form {
+    margin: 10px auto;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 26em) {
+  /*6/16*/
+  html {
+    font-size: 37%;
+  }
+  .blood_info_table {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .blood_info_table table {
+    width: 100%;
+  }
+  .blood_form {
+    margin: 10px auto;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 20em) {
+  /*6/16*/
+  html {
+    font-size: 37%;
+  }
+  .blood_form {
+    text-align: center;
+    margin: 10px auto;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

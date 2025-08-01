@@ -1,0 +1,237 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+*::placeholder {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #222;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+/* .contatus-title {
+  padding: 10px 0;
+  text-align: center;
+} */
+.contactus {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  top: 0;
+}
+.contactus::-webkit-scrollbar {
+  width: 0;
+}
+.input_control {
+  margin: 10px 0;
+}
+
+.input_control input,
+.input_control select,
+.input_control textarea {
+  width: 100%;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-family: inherit;
+  background: #0000001b;
+  color: #fff;
+}
+
+.input_control input:focus {
+  border-bottom: 3px solid #7ed56f;
+}
+
+.input_control input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+
+.contact-form {
+  padding: 10px;
+  max-width: 100%;
+}
+.send_message {
+  border: 2px solid #7ed56f;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  width: 70%;
+  height: 60vh;
+  background: #fff;
+}
+.info {
+  border: 1px solid black;
+  background: #2b8a3e;
+  color: #fff;
+  padding: 10px;
+}
+.contact_title h2 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.contact_message {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+  justify-content: center;
+}
+.location-logo,
+.phone-logo,
+.mail-logo {
+  font-size: 3rem;
+}
+.contact-us {
+  margin: 0 auto;
+  position: relative;
+  background: #02e07836;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  width: 50%;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid #02e079;
+  overflow: hidden;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+}
+.contact-us::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0;
+  top: 0;
+  background: #02e079;
+  transform: translate(-30px, 80px) rotate(10deg);
+  transition: all 0.3s ease-in;
+}
+.contact-us::before {
+  content: 'Contact us';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, 100%) rotate(10deg);
+  transition: all 0.3s ease-in;
+  z-index: 1;
+}
+.contact-us:hover::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.contact-us:hover::after {
+  width: 500%;
+  height: 900%;
+  left: -40%;
+  transform: translate(-30px, 0) rotate(10deg);
+}
+.map_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.map_container .about_container {
+  padding: 10px;
+  align-self: center;
+}
+.map_container .about_container h1 {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: 600;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    transparent 50%,
+    #02e079
+  );
+}
+.map_container .about_container p {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 300;
+}
+.map {
+  max-width: 100%;
+  overflow: hidden;
+}
+.map iframe {
+  width: 100%;
+  height: 60vh;
+}
+.socialmedia-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10vh;
+  gap: 40px;
+}
+.socialmedia_icons a {
+  font-size: 3rem;
+  color: #2b8a3e;
+  /* box-shadow: 0 0 10px #2b8a3e; */
+  filter: drop-shadow(0 0 5px #2b8a3e);
+}
+
+.footer_logo img {
+  width: 300px;
+  height: 140px;
+  object-fit: cover;
+}
+.contact_footer {
+  margin-top: 40px;
+  text-align: center;
+}
+@media (max-width: 48em) {
+  .map_container {
+    grid-template-columns: 1fr;
+  }
+  .map iframe {
+    width: 100%;
+    height: 350px;
+  }
+  .contact-form {
+    margin: 50px auto;
+    padding: 10px;
+    max-width: 90%;
+    border: 1px solid #7ed56f;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 27em) {
+  html {
+    font-size: 43%;
+  }
+}
+@media (max-width: 20em) {
+  html {
+    font-size: 33%;
+  }
+  .contatus-title {
+    padding: 20px;
+  }
+  .contatus-title svg {
+    width: 200px;
+  }
+}

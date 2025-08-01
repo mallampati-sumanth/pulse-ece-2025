@@ -1,0 +1,155 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background: #000;
+  font-family: 'Poppins', sans-serif;
+}
+.club {
+  max-width: 90%;
+  margin: 100px auto;
+  display: grid;
+  color: #ddd;
+  border-bottom: 1px solid #02e079;
+}
+.club_grid--right {
+  grid-template-columns: 500px 1fr;
+}
+.club_grid--left {
+  grid-template-columns: 1fr 500px;
+}
+.always_vlsi .club_content,
+.ni_labview .club_content {
+  align-self: center;
+  justify-self: center;
+}
+.always_vlsi .club_content .club_svg {
+  top: 0%;
+}
+.ni_labview .club_content .club_svg {
+  top: 20%;
+}
+.club_content {
+  position: relative;
+  padding: 10px;
+}
+.club_title {
+  font-size: 3.5rem;
+}
+.club_incharge h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.club_info p {
+  font-size: 1.6rem;
+}
+.club_svg {
+  position: absolute;
+  top: 15%;
+  left: 30%;
+  opacity: 0.5;
+  z-index: -1;
+}
+.club_svg svg {
+  filter: drop-shadow(0 4px 3px #ffffff88);
+}
+.club_join {
+  max-width: 90%;
+  margin: 60px auto;
+  text-align: center;
+}
+.join_club_btn {
+  display: inline-block;
+  position: relative;
+  background: #02e07836;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  width: 300px;
+  font-family: inherit;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #02e079;
+  overflow: hidden;
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #fff;
+  text-decoration: none;
+}
+.join_club_btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0;
+  top: 0;
+  background: #02e079;
+  transform: translate(-30px, 80px) rotate(10deg);
+  transition: all 0.3s ease-in;
+}
+.join_club_btn::before {
+  content: 'Join Club';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, 100%) rotate(10deg);
+  transition: all 0.3s ease-in;
+  z-index: 1;
+}
+.join_club_btn:hover::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.join_club_btn:hover::after {
+  width: 500%;
+  height: 900%;
+  left: -40%;
+  transform: translate(-30px, 0) rotate(10deg);
+}
+@media (max-width: 64em) {
+  html {
+    font-size: 56%;
+  }
+}
+@media (max-width: 48em) {
+  html {
+    font-size: 50%;
+  }
+  .club_grid--right {
+    grid-template-columns: 1fr;
+  }
+  .club_grid--left {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 27em) {
+  html {
+    font-size: 43%;
+  }
+
+  .club_svg svg {
+    width: 200px;
+    height: 200px;
+    filter: drop-shadow(0 4px 3px #ffffff88);
+  }
+  .always_vlsi .club_content .club_svg {
+    top: 10%;
+    left: 15%;
+  }
+  .ni_labview .club_content .club_svg {
+    top: 20%;
+    left: 15%;
+  }
+  .join_club_btn {
+    width: 250px;
+  }
+}

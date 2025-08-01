@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./../styles/menu.css" />
+  </head>
+  <body>
+    <svg class="cursor" width="100" height="100" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+    <div class="navbar">
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+      <div class="nav_menu">
+        <div class="bg-reveal-1"></div>
+        <div class="bg-reveal-2"></div>
+        <!-- <div class="circle_big"></div> -->
+        <div class="circle_small">
+          <svg
+            width="131"
+            height="457"
+            viewBox="0 0 131 457"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path class="line" d="M72 433V456.5" stroke="#9F9E9E" />
+            <path class="line" d="M62.5 41.5V351H56.5H68" stroke="#9F9E9E" />
+            <path class="line" d="M71.5 185.5V393.5V413" stroke="#9F9E9E" />
+            <circle class="circle" cx="63" cy="4" r="4" stroke="#9F9E9E" />
+            <circle class="circle" cx="63" cy="17" r="4" stroke="#9F9E9E" />
+            <circle class="circle" cx="63" cy="31" r="4" stroke="#9F9E9E" />
+            <circle
+              class="circle"
+              cx="71.5"
+              cy="398.5"
+              r="4.5"
+              stroke="#9F9E9E"
+            />
+            <circle class="circle" cx="72" cy="423" r="9.5" stroke="#9F9E9E" />
+            <path
+              class="line"
+              d="M79.0569 239.61C92.98 236.743 105.579 229.39 114.925 218.679C124.27 207.968 129.847 194.488 130.8 180.305C131.753 166.121 128.03 152.017 120.202 140.151C112.374 128.286 100.872 119.313 87.4576 114.609C74.0434 109.904 59.4568 109.727 45.9322 114.104C32.4076 118.481 20.6907 127.171 12.5763 138.843C4.46197 150.514 0.397552 164.524 1.00566 178.727C1.61376 192.929 6.86086 206.54 15.9432 217.476L23.2597 211.399C15.5063 202.064 11.027 190.444 10.5079 178.32C9.98873 166.196 13.4584 154.236 20.3855 144.272C27.3126 134.308 37.315 126.889 48.8607 123.153C60.4063 119.416 72.8586 119.568 84.31 123.584C95.7614 127.6 105.581 135.259 112.263 145.389C118.946 155.518 122.124 167.559 121.31 179.667C120.497 191.775 115.736 203.282 107.758 212.426C99.78 221.57 89.0243 227.847 77.1385 230.295L79.0569 239.61Z"
+              fill="#9F9E9E"
+            />
+          </svg>
+        </div>
+        <div class="nav_items">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Faculty</a></li>
+            <li><a href="#">Blood</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Sign in</a></li>
+            <li><a href="#">Sign up</a></li>
+            <li><a href="#">Profile</a></li>
+          </ul>
+        </div>
+        <div class="nav_logo">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+          <div class="socialmedia_icons">
+            <ul>
+              <li>
+                <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+              </li>
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://assets.codepen.io/16327/DrawSVGPlugin3.min.js"></script>
+    <script src="./../scripts/cursor-hover.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+      const t1 = gsap.timeline({
+        paused: true, // Pause the timeline by default
+      });
+
+      t1.fromTo('.nav_menu', { width: 0 }, { width: '100%' });
+      t1.fromTo('.bg-reveal-2', { x: '-100%' }, { x: '100%', duration: 0.5 });
+      t1.fromTo(
+        '.bg-reveal-1',
+        { x: '-100%' },
+        { x: '100%', duration: 0.5 },
+        '-=0.1'
+      );
+
+      // t1.fromTo(
+      //   '.circle_big',
+      //   { scale: 1 },
+      //   { width: '100px', height: '100px', scale: 20, duration: 1 }
+      // );
+
+      t1.fromTo(
+        '.nav_logo',
+        { opacity: 0, y: -40 },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+      t1.fromTo(
+        '.circle_small',
+        { display: 'none' },
+        {
+          display: 'block',
+        }
+      );
+      t1.to(
+        '.circle',
+        {
+          drawSVG: 0,
+          fill: '#9F9E9E',
+          duration: 1,
+        },
+        '-=1'
+      );
+      t1.from(
+        '.line',
+        {
+          drawSVG: 0,
+          fill: '#9F9E9E',
+          duration: 1,
+        },
+        '-=1'
+      );
+      t1.fromTo(
+        'li',
+        { x: -200, opacity: 0 },
+        { x: 0, opacity: 1, stagger: 0.1 }
+      );
+
+      const menu_btn = document.querySelector('.menu-btn');
+
+      menu_btn.addEventListener('click', () => {
+        menu_btn.classList.toggle('open');
+
+        if (menu_btn.classList.contains('open')) {
+          t1.play();
+        } else {
+          t1.reverse();
+        }
+      });
+    </script>
+  </body>
+</html>

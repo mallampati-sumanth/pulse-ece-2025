@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/admin.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="nav_logo">
+          <a href="/admin">
+            <img src="./../imgs/pulse-logo.png" alt="nav-logo" />
+          </a>
+        </div>
+        <ul class="nav_items">
+          <li class="nav_item"><a href="/admin/profile">Profile</a></li>
+        </ul>
+      </nav>
+    </header>
+    <aside class="aside_container">
+      <div class="toggle-btn">
+        <button><ion-icon name="menu-outline"></ion-icon></button>
+      </div>
+      <div class="aside_bar">
+        <div class="aside_title">
+          <h1>Dashboard</h1>
+        </div>
+        <ul class="aside_items">
+          <li class="aside_item"><a href="/admin">Home</a></li>
+          <li class="aside_item"><a href="/admin/users/">Users</a></li>
+          <li class="aside_item"><a href="/admin/faculty">Faculty</a></li>
+          <li class="aside_item">
+            <a href="/admin/pulseregistered">Pulse registered</a>
+          </li>
+          <li class="aside_item"><a href="/admin/blood">Blood</a></li>
+          <li class="aside_item"><a href="/admin/logout">Log out</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <div class="cards_container">
+        <a href="/admin/users" class="card-1">
+          <div class="card">
+            <div class="card_title">
+              <h1>4</h1>
+              <h2>Users</h2>
+            </div>
+            <div class="card_icon">
+              <ion-icon name="person-outline"></ion-icon>
+            </div>
+          </div>
+        </a>
+        <a href="/admin/faculty" class="card-2">
+          <div class="card">
+            <div class="card_title">
+              <h1>4</h1>
+              <h2>Faculty</h2>
+            </div>
+            <div class="card_icon">
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+          </div>
+        </a>
+        <a href="/admin/blood" class="card-3">
+          <div class="card">
+            <div class="card_title">
+              <h1>4</h1>
+              <h2>Blood</h2>
+            </div>
+            <div class="card_icon">
+              <svg
+                height="44px"
+                width="44px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 461.727 461.727"
+                xml:space="preserve"
+                fill="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <g>
+                      <path
+                        style="fill: #ffffff"
+                        d="M236.436,6.861L230.868,0L225.3,6.861c-6.576,8.104-160.824,199.02-160.824,288.475 c0,91.739,74.645,166.392,166.384,166.392s166.392-74.653,166.392-166.392C397.26,205.856,242.996,14.957,236.436,6.861z M182.454,395.008l-2.162-1.024c-53.258-25.353-70.987-93.861-54.185-141.949l0.797-2.243l13.542,4.715l-0.788,2.268 c-14.477,41.35,1.187,102.542,46.796,124.286l2.162,1.024L182.454,395.008z"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a href="/admin/pulseregistered" class="card-4">
+          <div class="card">
+            <div class="card_title">
+              <h1>4</h1>
+              <h2>Pulse registered</h2>
+            </div>
+            <div class="card_icon">
+              <ion-icon name="pulse-outline"></ion-icon>
+            </div>
+          </div>
+        </a>
+        <!-- <a href="/admin/events" class="card-5">
+          <div class="card">
+            <div class="card_title">
+              <h1>4</h1>
+              <h2>Events</h2>
+            </div>
+            <div class="card_icon">
+              <ion-icon name="rocket-outline"></ion-icon>
+            </div>
+          </div>
+        </a> -->
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      const toggle_btn = document.querySelector('.toggle-btn');
+      const aside_bar = document.querySelector('.aside_bar');
+      const aside_container = document.querySelector('.aside_container');
+
+      toggle_btn.addEventListener('click', () => {
+        aside_bar.classList.toggle('active');
+        aside_container.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>

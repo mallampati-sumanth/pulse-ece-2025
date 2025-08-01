@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./../styles/contactus.css" />
+  </head>
+
+  <body>
+    <section class="contactus">
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1697.1602123041832!2d80.6223282954227!3d16.441210580152315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f1adc26d4a0f%3A0x92904198ac008557!2sK%20L%20U%20R%26D%20ECE%20BLOCK!5e0!3m2!1sen!2sin!4v1707461128253!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div class="send_message">
+        <form class="contact-form" action="/contactus" method="post">
+          <div class="input_control">
+            <input type="text" name="name" placeholder="name" />
+          </div>
+          <div class="input_control">
+            <input type="email" name="email" placeholder="email" />
+          </div>
+          <div class="input_control">
+            <input type="number" name="number" placeholder="number" />
+          </div>
+          <div class="input_control">
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="5"
+              placeholder="message"
+            ></textarea>
+          </div>
+          <div class="input_control contact-btn" style="text-align: center">
+            <button class="contact-us">Contact us</button>
+          </div>
+        </form>
+        <div class="info">
+          <div class="contact_title">
+            <h2>Contact information</h2>
+          </div>
+          <div class="contact_message location">
+            <div class="location-logo">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <div class="location-info">
+              Green Fields, K L UNIVERSITY, Vaddeswaram, Andhra Pradesh 522303
+            </div>
+          </div>
+          <div class="contact_message phone">
+            <div class="phone-logo">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+            <div class="phone-info">
+              <a href="tel:+919398561330"> 9398561330 </a>
+            </div>
+          </div>
+          <div class="contact_message mail">
+            <div class="mail-logo">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <div class="mail-id">
+              <a href="mailto:avinashabhi870@gmail.com"
+                >avinashabhi870@gmail.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="map_container">
+        
+        <div class="about_container">
+          <h1>ECE Department</h1>
+          <p>
+            Electronics is not just a department it's a field, a masterpiece of
+            engineering. Communication in many aspects is possible with
+            electronics. It's the heart of engineering. In KLU, ECE department
+            is one of the biggest and highest counts of researches conducting
+            department. We are proud to be part of it.
+          </p>
+        </div>
+      </div>
+      <div class="contact_footer">
+        <div class="footer_logo">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+        </div>
+        <div class="footer_content">
+          <ul class="socialmedia-icon">
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        </div>
+      </div> -->
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://assets.codepen.io/16327/DrawSVGPlugin3.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+      gsap.from('.pulse', { duration: 6, drawSVG: 0 });
+      const t1 = gsap.timeline();
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '.map_container',
+            start: 'top 80%',
+            end: 'bottom 60%',
+          },
+        })
+        .fromTo(
+          '.map',
+          { opacity: 0, x: -10 },
+          { opacity: 1, x: 0, duration: 2 }
+        );
+      t1.fromTo('iframe', { scale: 3 }, { scale: 1, duration: 3 });
+    </script>
+  </body>
+</html>

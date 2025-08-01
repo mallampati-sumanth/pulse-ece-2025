@@ -1,0 +1,185 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 65.5%;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+.pulse-bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1));
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  top: 0;
+}
+.pulse-bg img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+.about_us {
+  max-width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+.about_us::-webkit-scrollbar {
+  width: 0;
+}
+.about_us_title h1 {
+  color: #fff;
+  margin: 30px 0;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.about_kl,
+.about_pulse,
+.about_zrotriya {
+  max-width: 90%;
+  margin: 0 auto;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  align-items: center;
+  padding: 20px;
+}
+.about_kl--logo img,
+.about_pulse--logo img,
+.about_zrotriya--logo img {
+  width: 80%;
+}
+.about_kl--content,
+.about_pulse--content,
+.about_zrotriya--content {
+  color: #fff;
+}
+.about_kl--content h2,
+.about_pulse--content h2,
+.about_zrotriya--content h2 {
+  font-size: 4rem;
+  font-weight: 600;
+}
+.about_kl--content p,
+.about_pulse--content p,
+.about_zrotriya--content p {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.about_pulse--join {
+  /* background: #37b24d; */
+  margin: 10px 0;
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  padding: 5px 10px;
+  transition: all 1s;
+  position: relative;
+  z-index: 1;
+}
+.about_pulse--join-bg {
+  background: #37b24d;
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: -1;
+}
+.about_pulse--join a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: 600;
+  z-index: 10;
+}
+.pulse_join {
+  max-width: 90%;
+  margin: 60px auto;
+  text-align: center;
+}
+.pulse_join h2 {
+  font-size: 4rem;
+  color: #fff;
+  font-weight: 600;
+}
+.join_pulse_btn {
+  margin-bottom: 50px;
+  display: inline-block;
+  position: relative;
+  background: #02e07836;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  width: 300px;
+  font-family: inherit;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #02e079;
+  overflow: hidden;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+.join_pulse_btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  left: 0;
+  top: 0;
+  background: #02e079;
+  transform: translate(-30px, 80px) rotate(10deg);
+  transition: all 0.3s ease-in;
+}
+.join_pulse_btn::before {
+  content: 'Join pulse';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, 100%) rotate(10deg);
+  transition: all 0.3s ease-in;
+  z-index: 1;
+}
+.join_pulse_btn:hover::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.join_pulse_btn:hover::after {
+  width: 500%;
+  height: 900%;
+  left: -40%;
+  transform: translate(-30px, 0) rotate(10deg);
+}
+@media (max-width: 48em) {
+  .about_kl,
+  .about_pulse,
+  .about_zrotriya {
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+@media (max-width: 28em) {
+  html {
+    font-size: 45%;
+  }
+  .join_pulse_btn {
+    width: 250px;
+  }
+}

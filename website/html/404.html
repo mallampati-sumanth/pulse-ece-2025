@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      .error_page {
+        margin: 100px auto;
+        max-width: 600px;
+        text-align: center;
+      }
+      .oops_title h1 {
+        font-size: 15rem;
+        font-weight: 900;
+        color: transparent;
+        background: url('./../imgs/51.jpg');
+        background-position: center center;
+        background-clip: text;
+        background-size: cover;
+      }
+      .title h4 {
+        font-size: 2rem;
+      }
+      .home_page_btn a {
+        margin-top: 10px;
+        display: inline-block;
+        background: #3b5bdb;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.7rem;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 30px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+      .home_page_btn a:active {
+        transform: scale(0.98);
+      }
+      .reason p {
+        font-size: 1.6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error_page">
+      <div class="oops_title">
+        <h1>Oops!</h1>
+      </div>
+      <div class="title"><h4>404 - PAGE NOT FOUND</h4></div>
+      <div class="reason">
+        <p>
+          The page you are looking for might have been removed had its name
+          changed or is temporarily unavailable
+        </p>
+      </div>
+      <div class="home_page_btn">
+        <a href="/">GO TO HOMEPAGE</a>
+      </div>
+    </div>
+  </body>
+</html>

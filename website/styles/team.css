@@ -1,0 +1,100 @@
+body {
+  background: #000;
+}
+.pulse-bg {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  top: 0;
+}
+.pulse-bg img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.team_imgs {
+  max-width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6rem;
+}
+.team_title {
+  text-align: center;
+  margin: 10px 0;
+  z-index: 4;
+}
+.wrapper {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.wrapper img {
+  width: 250px;
+  object-fit: cover;
+  height: 100px;
+  border: 2px solid red;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  aspect-ratio: 1.4;
+}
+.team_member_details {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -20%;
+  color: #fff;
+  text-align: center;
+
+  transition: all 0.5s;
+}
+.team_member_name {
+  line-height: 0.5;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+}
+.desigination {
+  text-transform: uppercase;
+}
+.team_member_socialmedia {
+  position: absolute;
+  top: 0;
+  left: 105%;
+}
+.team_member_socialmedia .socialmedia a {
+  color: #fff;
+  font-size: 1.4rem;
+  display: inline-block;
+  margin-bottom: 10px;
+  transform: translateY(-50px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.wrapper:hover .team_member_socialmedia .socialmedia a {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+
+@media (max-width: 48rem) {
+  .team_imgs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 27rem) {
+  .team_imgs {
+    text-align: center;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      svg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      width="92"
+      height="1385"
+      viewBox="0 0 92 1385"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class="line2"
+        d="M36.0813 0V312.613C26.7162 321.283 6.63451 347.926 1.22881 385.139C-4.17688 422.353 22.2114 456.665 36.0813 469.169V693.25C53.1519 708.756 88.0044 749.171 90.8495 786.784C93.6946 824.398 55.5228 860.144 36.0813 873.315C26.7162 912.329 13.605 999.661 36.0813 1036.87C58.5576 1074.09 45.4464 1284.46 36.0813 1385"
+        stroke="black"
+      />
+    </svg>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://assets.codepen.io/16327/DrawSVGPlugin3.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, DrawSVGPlugin);
+      const main = gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: 'svg',
+            start: 'top 0%',
+            end: 'bottom 99%',
+            scrub: true,
+          },
+        })
+        .from('.line2', { drawSVG: 0, duration: 4 });
+      // gsap.to('.line2', {
+      //   motionPath: {
+      //     path: '.line1',
+      //   },
+      //   duration: 5,
+      //   autoRotate: true,
+      // });
+      // MotionPathHelper.create('.line1');
+    </script>
+  </body>
+</html>

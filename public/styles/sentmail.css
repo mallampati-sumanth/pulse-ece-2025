@@ -1,0 +1,340 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #222;
+}
+.navbar {
+  position: absolute;
+  width: 100%;
+  padding: 0px 50px;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  gap: 20px;
+}
+.navbar .pulse_logo img {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+}
+.navbar span {
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff);
+  animation: 2s linear infinite animation;
+}
+@keyframes animation {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 95%;
+    transform: translateX(0%);
+  }
+}
+.nav_items {
+  display: flex;
+  list-style: none;
+  gap: 50px;
+}
+
+.nav-item a {
+  position: relative;
+  text-decoration: none;
+  color: #eee;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.nav-item a:hover {
+  color: #2b8a3e;
+}
+.nav-item a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 10px;
+  background: #2b8a3e;
+  left: 0;
+  bottom: -10%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.nav-item a:hover::after {
+  transform-origin: left;
+  transform: scale(1);
+}
+
+.menu-btn {
+  display: none;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn-burger {
+  width: 40px;
+  height: 3px;
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn-burger::after,
+.menu-btn-burger::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 3px;
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn-burger::after {
+  transform: translateY(16px);
+}
+.menu-btn-burger::before {
+  transform: translateY(-16px);
+}
+.menu-btn.open .menu-btn-burger {
+  transform: translateX(-50px);
+  background: transparent;
+}
+.menu-btn.open .menu-btn-burger::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+.menu-btn.open .menu-btn-burger::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+.nav_logo {
+  text-align: center;
+}
+.nav_logo img {
+  width: 80%;
+}
+.nav_items {
+  display: flex;
+}
+.socialmedia-icon {
+  display: none;
+}
+.socialmedia_icons a {
+  font-size: 4rem;
+  color: #2b8a3e;
+  /* box-shadow: 0 0 10px #2b8a3e; */
+  filter: drop-shadow(0 0 5px #2b8a3e);
+}
+.socialmedia-icon {
+  margin: 0 auto;
+  max-width: 100%;
+  display: none;
+  list-style: none;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media (max-width: 64em) {
+  .menu-btn {
+    display: block;
+  }
+  .pulse_logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  .navbar {
+    align-items: center;
+  }
+  .nav_menu {
+    margin-left: -100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.5s;
+    padding-top: 10px;
+    overflow: scroll;
+  }
+  .nav_menu.mobile {
+    margin-left: 0%;
+  }
+  .nav_items {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-item a {
+    color: #eee;
+  }
+}
+
+@media (max-width: 48em) {
+  html {
+    font-size: 50%;
+  }
+  .navbar {
+    padding: 5px 20px;
+  }
+  @keyframes animation {
+    0% {
+      left: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      left: 80%;
+      transform: translateX(0%);
+    }
+  }
+}
+@media (max-width: 27em) {
+  html {
+    font-size: 43%;
+  }
+  .hero_section {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 50vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pulse_logo img {
+    width: 20px;
+    height: 50px;
+  }
+  .menu-btn {
+    width: 10px;
+    height: 5px;
+  }
+  .menu-btn-burger {
+    width: 30px;
+  }
+  .menu-btn-burger::after {
+    width: 30px;
+    transform: translateY(10px);
+  }
+  .menu-btn-burger::before {
+    width: 30px;
+    transform: translateY(-10px);
+  }
+  .nav_menu {
+    width: 100%;
+  }
+  .nav-item a {
+    color: #eee;
+    font-size: 2.4rem;
+  }
+  .socialmedia-icon {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    gap: 20px;
+  }
+}
+
+.mail_section {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: url('./../imgs/pulse-bg.png');
+  background-position: center center;
+  background-size: cover;
+}
+.mail_container {
+  max-width: 30%;
+  border: 1px solid #eee;
+  padding: 20px;
+  margin: 100px auto 0;
+  border-radius: 20px;
+}
+.mail_container h2 {
+  padding: 10px 0;
+  font-size: 3rem;
+  color: #eee;
+}
+.mail_container p {
+  margin: 0 auto;
+  background: #2b8a3e;
+  padding: 20px;
+  color: #fff;
+  width: 90%;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+.mail_container span {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0 10px;
+}
+.follow_btns {
+  margin-top: 20px;
+  text-align: center;
+}
+.follow_btns a {
+  text-decoration: none;
+  color: #eee;
+  display: inline-block;
+  font-size: 1.8rem;
+  padding: 5px 10px;
+  border: 1px solid #2b8a3e;
+  border-radius: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transform: scale(1);
+
+  transition: all 0.5s;
+}
+.follow_btns a:hover {
+  background: #2b8a3e;
+  color: #222;
+  transform: scale(1.09);
+}
+@media (max-width: 64em) {
+  .mail_container {
+    max-width: 50%;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin: 100px auto 0;
+    border-radius: 20px;
+  }
+}
+@media (max-width: 27em) {
+  .mail_container {
+    max-width: 90%;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin: 100px auto 0;
+    border-radius: 20px;
+  }
+}

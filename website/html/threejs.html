@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+    <link rel="stylesheet" href="./../styles/threejs.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="canvas_container">
+      <section class="hero_section">
+        <div class="hero_img">
+          <img src="./../imgs/textured-pulse.png" alt="" />
+          <h1>
+            Student body association of Department of Electronics and
+            Communication Engineering,KL University
+          </h1>
+        </div>
+      </section>
+    </div>
+    <svg class="cursor" width="100" height="100" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+    <div class="navbar">
+      <span></span>
+
+      <div class="pulse_logo">
+        <img src="./../imgs/pulse-logo.png" alt="" />
+      </div>
+      <div class="nav_menu">
+        <ul class="nav_items">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">About</a></li>
+          <li class="nav-item"><a href="#">Events</a></li>
+          <li class="nav-item"><a href="#">Gallery</a></li>
+          <li class="nav-item"><a href="#">Faculty</a></li>
+          <li class="nav-item"><a href="#">Blood</a></li>
+          <li class="nav-item"><a href="#">Team</a></li>
+          <li class="nav-item"><a href="#">Contact</a></li>
+          <li class="nav-item"><a href="#">Sign in</a></li>
+          <li class="nav-item"><a href="#">Sign up</a></li>
+          <li class="nav-item"><a href="#">Profile</a></li>
+        </ul>
+        <ul class="socialmedia-icon">
+          <li class="socialmedia_icons">
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li class="socialmedia_icons">
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li class="socialmedia_icons">
+            <a href="#">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+          <li class="socialmedia_icons">
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://assets.codepen.io/16327/DrawSVGPlugin3.min.js"></script>
+    <script src="./../scripts/cursor-hover.js"></script>
+
+    <script>
+      const menu_btn = document.querySelector('.menu-btn');
+      const nav_menu = document.querySelector('.nav_menu');
+      menu_btn.addEventListener('click', () => {
+        menu_btn.classList.toggle('open');
+        nav_menu.classList.toggle('mobile');
+      });
+    </script>
+  </body>
+</html>

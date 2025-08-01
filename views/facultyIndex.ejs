@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./../imgs/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="./../imgs/apple-touch-icon.png" />
+    <link rel="manifest" href="./../imgs/site.webmanifest" />
+    <title>Pulse</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <div class="loader_container">
+      <div class="svg_container-loader">
+        <svg
+          class="res_cap_svg"
+          width="484"
+          height="53"
+          viewBox="0 0 484 53"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="resistor"
+            d="M0 22.432H21.3213L34.6243 9L57.4035 32L80.1826 9L102.962 32L125.741 9L148.52 32L157.996 22.432H182"
+            stroke="white"
+            stroke-width="1.1"
+          />
+          <path
+            class="inductor"
+            d="M294 22.8416H326C327.833 14.6749 334.2 -1.05844 345 1.34156C358.5 4.34156 359 42.8416 352 50.8416C345 58.8416 341.5 6.34155 367 1.34156C392.5 -3.65842 379.5 47.8416 377 50.8416C374.5 53.8416 367 3.84155 396 1.34156C425 -1.15842 405 60.8416 402 50.8416C399 40.8416 404.5 1.34156 423.5 1.34156C442.5 1.34156 434 62.8416 430 50.8416C426.8 41.2416 434.667 28.1749 439 22.8416H483.5"
+            stroke="white"
+          />
+        </svg>
+        <svg
+          class="capacitor_svg"
+          width="184"
+          height="63"
+          viewBox="0 0 90 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path class="capacitor" d="M0 15.5H40V31V0" />
+          <path
+            class="capacitor"
+            d="M89.0841 15.7184L49.0847 15.4998L49.1695 1.36718e-06L49 30.9995"
+          />
+        </svg>
+      </div>
+    </div>
+    <div id="canvas_container">
+      <section class="hero_section">
+        <div class="hero_img">
+          <img src="/imgs/textured-pulse.png" alt="" />
+          <h1>
+            Student body association of Department of Electronics and
+            Communication Engineering,KL University
+          </h1>
+        </div>
+      </section>
+    </div>
+    <svg class="cursor" width="100" height="100" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+    <div class="navbar">
+      <span></span>
+
+      <div class="pulse_logo">
+        <a href="/faculty">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+        </a>
+      </div>
+      <div class="nav_menu">
+        <ul class="nav_items">
+          <li class="nav-item"><a href="/faculty">Home</a></li>
+          <li class="nav-item"><a href="/faculty/clubs">Clubs</a></li>
+          <li class="nav-item"><a href="/faculty/events">Events</a></li>
+          <li class="nav-item"><a href="/faculty/blood">Blood</a></li>
+          <% if(typeof session.user === 'undefined' || !session.user) {%>
+          <li class="nav-item"><a href="/faculty/signin">Sign in</a></li>
+          <li class="nav-item"><a href="/faculty/signup">Sign up</a></li>
+          <%}%> <% if(typeof session.user !== 'undefined' && session.user) {%>
+          <li class="nav-item"><a href="/faculty/profile">Profile</a></li>
+          <li class="nav-item"><a href="/faculty/logout">Logout</a></li>
+
+          <%}%>
+
+          <li>
+            <ul class="socialmedia-icon">
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/scripts/cursor-hover.js"></script>
+    <script src="/scripts/three.js"></script>
+    <script src="/scripts/index.js"></script>
+  </body>
+</html>
