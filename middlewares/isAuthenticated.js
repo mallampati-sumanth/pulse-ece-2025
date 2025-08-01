@@ -7,6 +7,7 @@ exports.authenticate = (req, res, next) => {
       if (err) {
         return res.redirect('/signin');
       }
+      req.user = decode;
       next();
     });
   } else {
@@ -20,24 +21,22 @@ exports.authorized = (req, res, next) => {
     if (token) {
       jwt.verify(token, process.env.SECRET, (err, decode) => {
         if (err) {
-          next();
+          return next();
         }
         return res.redirect('/profile');
       });
-    }
-    if (!token) {
-      next();
     } else {
-      return res.redirect('/profile');
+      next();
     }
   } catch (error) {
     console.log(error);
+    next();
   }
 };
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
-    if (!roles.includes(req.session.user.role)) {
+    if (!req.session.user || !roles.includes(req.session.user.role)) {
       return res.redirect('/');
     }
     next();

@@ -56,9 +56,20 @@ exports.contactusGet = (req, res) => {
   res.render('contactus');
 };
 exports.profileGet = async (req, res) => {
-  const email = req.session.user.email;
-  const user = await User.findOne({ email }).select('-password');
-  res.render('profile', { user });
+  try {
+    if (!req.session.user || !req.session.user.email) {
+      return res.redirect('/signin');
+    }
+    const email = req.session.user.email;
+    const user = await User.findOne({ email }).select('-password');
+    if (!user) {
+      return res.redirect('/signin');
+    }
+    res.render('profile', { user });
+  } catch (error) {
+    console.log('Profile Error:', error);
+    res.redirect('/signin');
+  }
 };
 exports.club = (req, res) => {
   res.render('club');
