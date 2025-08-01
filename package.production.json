@@ -1,0 +1,54 @@
+{
+  "name": "pulse-student-management",
+  "version": "1.0.0",
+  "description": "A comprehensive student management system with blood donation tracking and event management",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/pulse-student-management.git"
+  },
+  "keywords": [
+    "student-management",
+    "nodejs",
+    "express",
+    "mongodb",
+    "blood-donation",
+    "event-management",
+    "education",
+    "web-application"
+  ],
+  "author": "mallampati-sumanth <msumanth117@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server.js",
+    "dev": "nodemon ./server.js",
+    "setup-db": "node setup-database.js",
+    "build": "echo 'No build process required for this project'",
+    "postinstall": "echo 'Installation complete. Run npm run setup-db to initialize database.'"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "googleapis": "^133.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.9",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

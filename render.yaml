@@ -1,0 +1,14 @@
+# Railway deployment configuration
+# Railway automatically detects Node.js projects
+# This file can be used for custom build/start commands if needed
+
+build:
+  commands:
+    - npm install
+    - echo "Build completed for Railway deployment"
+
+start:
+  command: npm start
+
+env:
+  NODE_ENV: production
