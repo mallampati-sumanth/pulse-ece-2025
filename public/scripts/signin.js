@@ -9,7 +9,12 @@ const signuprequest = async details => {
   });
   const res = await req.json();
   if (res.status === 'Success') {
-    location.assign('/');
+    // Check if user is admin and redirect accordingly
+    if (res.user && res.user.role === 'admin') {
+      location.assign('/admin');
+    } else {
+      location.assign('/');
+    }
   }
   if (res.status === 'Failed') {
     alert_msg.innerHTML = ` <ion-icon name="warning-outline"></ion-icon

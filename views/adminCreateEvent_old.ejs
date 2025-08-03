@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event - Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <style>
+        main {
+            align-self: center;
+            grid-row: 2/3;
+            grid-column: 2/-1;
+        }
+        .main-content {
+            padding: 30px;
+            background: var(--bg);
+            min-height: calc(100vh - 100px);
+        }
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .page-header h1 {
+            color: var(--font-black);
+            font-size: 2.4rem;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+        .form-section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--font-black);
+            font-size: 1.4rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-top: 40px;
+        }
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #238b3f;
+        }
+        .btn-cancel {
+            background: #666;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-cancel:hover {
+            background: #555;
+        }
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <%- include('partials/adminHeader') %>
+    
+    <!-- Admin Sidebar -->
+    <%- include('partials/adminSidebar') %>
+    
+    <main>
+        <div class="main-content">
+            <div class="page-header">
+                <h1>Create New Event</h1>
+            </div>
+            
+            <div class="form-container">
+                <form method="POST" action="/admin/events/create">
+                    <div class="form-section">
+                        <h2 class="section-title">Event Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="title">Event Title *</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Workshop">Workshop</option>
+                                    <option value="Seminar">Seminar</option>
+                                    <option value="Competition">Competition</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Event Description *</label>
+                            <textarea id="description" name="description" placeholder="Provide detailed information about the event..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2 class="section-title">Event Details</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="date">Event Date *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Event Time *</label>
+                                <input type="time" id="time" name="time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="venue">Venue *</label>
+                                <input type="text" id="venue" name="venue" placeholder="Event location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="capacity">Capacity *</label>
+                                <input type="number" id="capacity" name="capacity" min="1" placeholder="Maximum participants" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="entryFee">Entry Fee (₹) *</label>
+                                <input type="number" id="entryFee" name="entryFee" min="0" step="0.01" placeholder="0.00" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Event Status *</label>
+                                <select id="status" name="status" required>
+                                    <option value="upcoming">Upcoming</option>
+                                    <option value="ongoing">Ongoing</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Create Event</button>
+                        <a href="/admin/events" class="btn-cancel">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn-cancel {
+            background: #666;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .coordinator-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .btn-add-coordinator {
+            background: #2196F3;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .btn-remove {
+            background: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create New Event</h1>
+        
+        <form id="eventForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Event Title *</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" required placeholder="Describe the event..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Event Date *</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Event Time *</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="venue">Venue *</label>
+                <input type="text" id="venue" name="venue" required placeholder="Event location">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="Technical">Technical</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Competition">Competition</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacity</label>
+                    <input type="number" id="capacity" name="capacity" min="1" placeholder="Maximum participants">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="registrationDeadline">Registration Deadline *</label>
+                    <input type="datetime-local" id="registrationDeadline" name="registrationDeadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="entryFee">Entry Fee (₹)</label>
+                    <input type="number" id="entryFee" name="entryFee" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" name="requirements" placeholder="Any requirements for participation..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="prizes">Prizes</label>
+                <textarea id="prizes" name="prizes" placeholder="Prize information..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="eventImage">Event Poster</label>
+                <input type="file" id="eventImage" name="eventImage" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>Event Coordinators</label>
+                <button type="button" class="btn-add-coordinator" onclick="addCoordinator()">Add Coordinator</button>
+                <div id="coordinators-container">
+                    <!-- Coordinators will be added here -->
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <button type="submit" class="btn-submit">Create Event</button>
+                <a href="/admin/events" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let coordinatorCount = 0;
+
+        function addCoordinator() {
+            coordinatorCount++;
+            const container = document.getElementById('coordinators-container');
+            const coordinatorDiv = document.createElement('div');
+            coordinatorDiv.className = 'coordinator-item';
+            coordinatorDiv.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeCoordinator(this)">Remove</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="coordinators[${coordinatorCount}][name]" placeholder="Coordinator name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="coordinators[${coordinatorCount}][phone]" placeholder="Phone number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="coordinators[${coordinatorCount}][email]" placeholder="Email address">
+                </div>
+            `;
+            container.appendChild(coordinatorDiv);
+        }
+
+        function removeCoordinator(button) {
+            button.parentElement.remove();
+        }
+
+        // Add one coordinator by default
+        addCoordinator();
+
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('/admin/events', {
+                method: 'POST',
+                body: formData
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

@@ -30,10 +30,10 @@ const upload = multer({
 });
 pageRouter
   .route('/signin')
-  .get(middlewares.authorized, pageController.siginGet);
+  .get(pageController.siginGet);
 pageRouter
   .route('/signup')
-  .get(middlewares.authorized, pageController.sigupGet);
+  .get(pageController.sigupGet);
 pageRouter.route('/team').get(pageController.team);
 pageRouter
   .route('/blood')

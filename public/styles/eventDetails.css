@@ -1,0 +1,479 @@
+/* Event Details Page Styling */
+:root {
+  --primary-color: #2b8a3e;
+  --secondary-color: #51cf66;
+  --accent-color: #02e079;
+  --text-color: #ffffff;
+  --background-dark: #0a0a0a;
+  --card-background: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background-dark);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.event-details-main {
+  padding: 100px 0 50px;
+  min-height: 100vh;
+}
+
+.event-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Back Navigation */
+.back-navigation {
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+.back-btn:hover {
+  background: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(43, 138, 62, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.back-btn ion-icon {
+  font-size: 18px;
+}
+
+/* Event Header */
+.event-header {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+
+.event-poster-large {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.event-poster-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-poster {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.placeholder-poster ion-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.placeholder-poster h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event-info-header {
+  padding: 20px 0;
+}
+
+.event-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.event-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.category-badge,
+.fee-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-badge {
+  background: linear-gradient(135deg, var(--info-color), #74c0fc);
+  color: white;
+}
+
+.fee-badge {
+  background: linear-gradient(135deg, var(--warning-color), #ffd43b);
+  color: #000;
+}
+
+.fee-badge.free {
+  background: linear-gradient(135deg, var(--success-color), #51cf66);
+  color: white;
+}
+
+/* Event Details Grid */
+.event-details-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+/* Main Details */
+.event-main-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.detail-section {
+  background: var(--card-background);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+.detail-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+}
+
+.detail-section h3 ion-icon {
+  font-size: 1.5rem;
+}
+
+.detail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-label ion-icon {
+  font-size: 1.2rem;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.description-content,
+.prizes-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Sidebar */
+.event-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.registration-card,
+.coordinators-card,
+.stats-card {
+  background: var(--card-background);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+.registration-card h3,
+.coordinators-card h3,
+.stats-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+}
+
+/* Registration Button */
+.register-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.register-open {
+  background: linear-gradient(135deg, var(--success-color), var(--secondary-color));
+  color: white;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.register-open:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.register-login {
+  background: linear-gradient(135deg, var(--info-color), #74c0fc);
+  color: white;
+  box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.register-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.register-closed {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.register-success {
+  background: linear-gradient(135deg, var(--success-color), #20c997);
+  color: white;
+  cursor: default;
+}
+
+.registration-note {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin: 0;
+}
+
+.registration-note.closed {
+  color: #ff6b6b;
+}
+
+/* Coordinators */
+.coordinators-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.coordinator-item {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.coordinator-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--accent-color);
+}
+
+.coordinator-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.coordinator-contact a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.coordinator-contact a:hover {
+  color: var(--primary-color);
+}
+
+.coordinator-contact ion-icon {
+  font-size: 1rem;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .event-details-main {
+    padding: 80px 0 30px;
+  }
+  
+  .event-details-container {
+    padding: 0 15px;
+  }
+  
+  .event-header {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .event-poster-large {
+    height: 250px;
+  }
+  
+  .event-title {
+    font-size: 2.2rem;
+  }
+  
+  .event-details-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .detail-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .detail-label {
+    font-size: 0.8rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-title {
+    font-size: 1.8rem;
+  }
+  
+  .detail-section,
+  .registration-card,
+  .coordinators-card,
+  .stats-card {
+    padding: 20px;
+  }
+  
+  .register-btn {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,6 +1,7 @@
 const User = require('./../Models/userModel');
 const sendmail = require('./../utils/nodeMailer');
 const Pulse = require('./../Models/joinPulse');
+const Event = require('./../Models/eventModel');
 const multer = require('multer');
 const crypto = require('crypto');
 
@@ -87,8 +88,48 @@ exports.resetPasswordGet = async (req, res) => {
 exports.sentmail = (req, res) => {
   res.render('mailsent');
 };
-exports.events = (req, res) => {
-  res.render('events');
+exports.events = async (req, res) => {
+  try {
+    const events = await Event.find({ 
+      isActive: true, 
+      status: { $ne: 'cancelled' } 
+    }).sort({ date: 1 });
+    
+    console.log(`Found ${events.length} events`);
+    
+    // Add virtual isRegistrationOpen property
+    const eventsWithRegistrationStatus = events.map(event => {
+      const eventObj = event.toObject();
+      const now = new Date();
+      const registrationDeadline = new Date(event.registrationDeadline);
+      const eventDate = new Date(event.date);
+      
+      // Registration is open if:
+      // 1. Current time is before registration deadline
+      // 2. Current time is before event date
+      // 3. Event status is 'upcoming' or 'active'
+      eventObj.isRegistrationOpen = (
+        now < registrationDeadline && 
+        now < eventDate && 
+        (event.status === 'upcoming' || event.status === 'active' || !event.status)
+      );
+      
+      console.log(`Event: ${event.title}, Registration Open: ${eventObj.isRegistrationOpen}, Deadline: ${registrationDeadline}, Now: ${now}`);
+      
+      return eventObj;
+    });
+    
+    res.render('events', { 
+      events: eventsWithRegistrationStatus,
+      session: req.session 
+    });
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    res.render('events', { 
+      events: [],
+      session: req.session 
+    });
+  }
 };
 
 exports.contactusPost = async (req, res) => {

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create <%= userType %> - Admin Panel</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="toggle-btn">
+        <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <!-- Header -->
+    <%- include('partials/adminHeader') %>
+    
+    <!-- Admin Sidebar -->
+    <%- include('partials/adminSidebar') %>
+
+    <main>
+        <!-- Header Section -->
+        <div class="create-user-header">
+            <div class="header-content">
+                <div class="breadcrumb">
+                    <a href="/admin/users" class="breadcrumb-link">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                        Back to Users
+                    </a>
+                </div>
+                <h1>
+                    <ion-icon name="<%= userType === 'Student' ? 'school-outline' : 'people-outline' %>"></ion-icon>
+                    Create New <%= userType %>
+                </h1>
+                <p>Add a new <%= userType.toLowerCase() %> to the Pulse ECE platform</p>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="create-user-container">
+            <div class="form-card">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <ion-icon name="<%= userType === 'Student' ? 'person-add-outline' : 'people-outline' %>"></ion-icon>
+                    </div>
+                    <h2><%= userType %> Information</h2>
+                    <p>Fill in the details below to create a new <%= userType.toLowerCase() %> account</p>
+                </div>
+
+                <form id="userForm" class="enhanced-form">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <ion-icon name="person-outline"></ion-icon>
+                            Personal Details
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="Enter email address">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" required minlength="8" placeholder="Enter password (min 8 characters)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information Section (Students Only) -->
+                    <% if (userType === 'Student') { %>
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <ion-icon name="school-outline"></ion-icon>
+                            Academic Details
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="batch">Batch *</label>
+                                <select id="batch" name="batch" required>
+                                    <option value="">Select batch year</option>
+                                    <option value="Y20">Y20 (2020)</option>
+                                    <option value="Y21">Y21 (2021)</option>
+                                    <option value="Y22">Y22 (2022)</option>
+                                    <option value="Y23">Y23 (2023)</option>
+                                    <option value="Y24">Y24 (2024)</option>
+                                    <option value="Y25">Y25 (2025)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="branch">Branch *</label>
+                                <select id="branch" name="branch" required>
+                                    <option value="">Select branch</option>
+                                    <option value="ECE">Electronics & Communication Engineering</option>
+                                    <option value="CSE">Computer Science & Engineering</option>
+                                    <option value="IOT">Internet of Things</option>
+                                    <option value="CSIT">Computer Science & Information Technology</option>
+                                    <option value="AIDS">Artificial Intelligence & Data Science</option>
+                                    <option value="MECH">Mechanical Engineering</option>
+                                    <option value="CIVIL">Civil Engineering</option>
+                                    <option value="EEE">Electrical & Electronics Engineering</option>
+                                    <option value="BBE">Bio-Medical Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <ion-icon name="medical-outline"></ion-icon>
+                            Additional Information
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="blood">Blood Group</label>
+                                <select id="blood" name="blood">
+                                    <option value="">Select blood group</option>
+                                    <option value="A+">A+ (A Positive)</option>
+                                    <option value="A-">A- (A Negative)</option>
+                                    <option value="B+">B+ (B Positive)</option>
+                                    <option value="B-">B- (B Negative)</option>
+                                    <option value="O+">O+ (O Positive)</option>
+                                    <option value="O-">O- (O Negative)</option>
+                                    <option value="AB+">AB+ (AB Positive)</option>
+                                    <option value="AB-">AB- (AB Negative)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="role" value="<%= userType === 'Student' ? 'student' : 'faculty' %>">
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="window.history.back()">
+                            <ion-icon name="close-outline"></ion-icon>
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-submit">
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                            Create <%= userType %>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Mobile menu toggle
+        const toggle_btn = document.querySelector('.toggle-btn');
+        const aside_container = document.querySelector('.aside_container');
+        
+        if (toggle_btn && aside_container) {
+            toggle_btn.addEventListener('click', () => {
+                aside_container.classList.toggle('active');
+            });
+        }
+
+        // Form submission
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon> Creating...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            fetch('/admin/users/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'Success') {
+                    // Show success message
+                    showNotification('<%= userType %> created successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/admin/users';
+                    }, 1500);
+                } else {
+                    showNotification('Error: ' + (data.message || data.error), 'error');
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Error creating <%= userType.toLowerCase() %>', 'error');
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+        // Notification function
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <ion-icon name="${type === 'success' ? 'checkmark-circle-outline' : 'alert-circle-outline'}"></ion-icon>
+                ${message}
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

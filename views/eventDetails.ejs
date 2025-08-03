@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= event.title %> - Event Details | Pulse ECE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Protest+Revolution&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imgs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../imgs/apple-touch-icon.png">
+    <link rel="manifest" href="../imgs/site.webmanifest">
+    <link rel="stylesheet" href="/styles/events.css">
+    <link rel="stylesheet" href="/styles/eventDetails.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="pulse_logo">
+            <a href="/">
+                <img src="/imgs/pulse-logo.png" alt="Pulse ECE Logo">
+            </a>
+        </div>
+        <div class="menu-btn">
+            <div class="menu-btn-burger"></div>
+        </div>
+        <div class="nav_menu">
+            <ul class="nav_items">
+                <li><a href="/">Home</a></li>
+                <li><a href="/events" class="active">Events</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/team">Team</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <% if (session.user) { %>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/signin">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="event-details-main">
+        <div class="event-details-container">
+            <!-- Back Button -->
+            <div class="back-navigation">
+                <a href="/events" class="back-btn">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    Back to Events
+                </a>
+            </div>
+
+            <!-- Event Header -->
+            <div class="event-header">
+                <div class="event-poster-large">
+                    <% if (event.poster) { %>
+                        <img src="/uploads/events/<%= event.poster %>" alt="<%= event.title %>">
+                    <% } else { %>
+                        <div class="placeholder-poster">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            <h3><%= event.title %></h3>
+                        </div>
+                    <% } %>
+                </div>
+                
+                <div class="event-info-header">
+                    <h1 class="event-title"><%= event.title %></h1>
+                    <div class="event-meta">
+                        <span class="category-badge"><%= event.category %></span>
+                        <% if (event.entryFee > 0) { %>
+                            <span class="fee-badge">₹<%= event.entryFee %></span>
+                        <% } else { %>
+                            <span class="fee-badge free">Free</span>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Details Grid -->
+            <div class="event-details-grid">
+                <!-- Main Details -->
+                <div class="event-main-details">
+                    <div class="detail-section">
+                        <h3><ion-icon name="information-circle-outline"></ion-icon> Event Information</h3>
+                        <div class="detail-items">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    Date & Time
+                                </div>
+                                <div class="detail-value">
+                                    <%= new Date(event.date).toLocaleDateString('en-US', { 
+                                        weekday: 'long', 
+                                        year: 'numeric', 
+                                        month: 'long', 
+                                        day: 'numeric' 
+                                    }) %> at <%= event.time %>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <ion-icon name="location-outline"></ion-icon>
+                                    Venue
+                                </div>
+                                <div class="detail-value"><%= event.venue %></div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <ion-icon name="people-outline"></ion-icon>
+                                    Capacity
+                                </div>
+                                <div class="detail-value"><%= event.capacity %> participants</div>
+                            </div>
+                            
+                            <% if (event.requirements) { %>
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <ion-icon name="list-outline"></ion-icon>
+                                    Requirements
+                                </div>
+                                <div class="detail-value"><%= event.requirements %></div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <% if (event.description) { %>
+                    <div class="detail-section">
+                        <h3><ion-icon name="document-text-outline"></ion-icon> Description</h3>
+                        <div class="description-content">
+                            <%= event.description %>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <% if (event.prizes) { %>
+                    <div class="detail-section">
+                        <h3><ion-icon name="trophy-outline"></ion-icon> Prizes</h3>
+                        <div class="prizes-content">
+                            <%= event.prizes %>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="event-sidebar">
+                    <!-- Registration Section -->
+                    <div class="registration-card">
+                        <h3>Registration</h3>
+                        <% if (event.isRegistrationOpen) { %>
+                            <% if (session.user) { %>
+                                <button onclick="registerForEvent('<%= event._id %>')" class="register-btn register-open">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    Register Now
+                                </button>
+                                <p class="registration-note">Click to register for this event</p>
+                            <% } else { %>
+                                <a href="/signin" class="register-btn register-login">
+                                    <ion-icon name="log-in-outline"></ion-icon>
+                                    Login to Register
+                                </a>
+                                <p class="registration-note">You need to login to register</p>
+                            <% } %>
+                        <% } else { %>
+                            <button class="register-btn register-closed" disabled>
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                                Registration Closed
+                            </button>
+                            <p class="registration-note closed">Registration deadline has passed</p>
+                        <% } %>
+                    </div>
+
+                    <!-- Coordinators Section -->
+                    <% if (event.coordinators && event.coordinators.length > 0) { %>
+                    <div class="coordinators-card">
+                        <h3><ion-icon name="people-circle-outline"></ion-icon> Event Coordinators</h3>
+                        <div class="coordinators-list">
+                            <% event.coordinators.forEach(function(coord) { %>
+                                <div class="coordinator-item">
+                                    <div class="coordinator-name"><%= coord.name %></div>
+                                    <div class="coordinator-contact">
+                                        <a href="mailto:<%= coord.email %>">
+                                            <ion-icon name="mail-outline"></ion-icon>
+                                            <%= coord.email %>
+                                        </a>
+                                        <a href="tel:<%= coord.phone %>">
+                                            <ion-icon name="call-outline"></ion-icon>
+                                            <%= coord.phone %>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <!-- Event Stats -->
+                    <div class="stats-card">
+                        <h3><ion-icon name="stats-chart-outline"></ion-icon> Event Stats</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value"><%= event.capacity %></div>
+                                <div class="stat-label">Max Capacity</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value"><%= event.category %></div>
+                                <div class="stat-label">Category</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        function registerForEvent(eventId) {
+            if (confirm('Are you sure you want to register for this event?')) {
+                // Show loading state
+                const registerBtns = document.querySelectorAll(`[onclick*="${eventId}"]`);
+                registerBtns.forEach(btn => {
+                    btn.style.opacity = '0.6';
+                    btn.style.pointerEvents = 'none';
+                    btn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon> Registering...';
+                });
+
+                fetch('/events/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ eventId: eventId })
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    if (data.status === 'Success') {
+                        alert('Successfully registered for the event!');
+                        location.reload();
+                    } else {
+                        alert('Error: ' + (data.message || data.error || 'Registration failed'));
+                        // Reset button state
+                        registerBtns.forEach(btn => {
+                            btn.style.opacity = '1';
+                            btn.style.pointerEvents = 'auto';
+                            btn.innerHTML = '<ion-icon name="calendar-outline"></ion-icon> Register Now';
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert('Network error: Unable to register for event. Please check your connection.');
+                    // Reset button state
+                    registerBtns.forEach(btn => {
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'auto';
+                        btn.innerHTML = '<ion-icon name="calendar-outline"></ion-icon> Register Now';
+                    });
+                });
+            }
+        }
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navMenu = document.querySelector('.nav_menu');
+        
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuBtn.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

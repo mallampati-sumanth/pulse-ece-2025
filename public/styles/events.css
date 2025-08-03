@@ -489,20 +489,193 @@ p {
   transition: all 0.5s;
 }
 
+/* Event details styling */
+.event_details {
+  margin: 20px 0;
+}
+
+.event_details p {
+  margin: 8px 0;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.detail-label {
+  color: #2b8a3e !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 1.4rem;
+}
+
 .event_register a:hover {
   background: var(--primary_color);
   transform: scale(1.02);
 }
 
+/* Modern Register Button Styles */
+.register-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: var(--poppins);
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.register-btn ion-icon {
+  font-size: 1.8rem;
+}
+
+.register-open {
+  background: linear-gradient(135deg, #02e079, #00c766);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.register-open:hover {
+  background: linear-gradient(135deg, #00c766, #02e079);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 224, 121, 0.4);
+}
+
+.register-login {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.register-login:hover {
+  background: linear-gradient(135deg, #0056b3, #007bff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.register-closed {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 0.7;
+  border: 2px solid #6c757d;
+}
+
+.register-closed:disabled {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  transform: none;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.register-closed:hover {
+  transform: none;
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+}
+
+/* Enhanced Event Card Styling */
 .event {
   position: relative;
   display: grid;
   margin: 90px auto;
   max-width: 90%;
-  height: 70vh;
-  border-bottom: 1px solid #2b8a3e;
+  min-height: 70vh;
+  border-bottom: 2px solid #2b8a3e;
   gap: 300px;
+  padding: 30px;
+  background: rgba(43, 138, 62, 0.02);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.event:hover {
+  background: rgba(43, 138, 62, 0.05);
+  border-bottom: 2px solid #02e079;
+}
+
+.event_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
   padding: 20px;
+}
+
+.event_title h2 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #02e079;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.event_info p {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.event_info p span {
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.event_poster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.event_poster:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(2, 224, 121, 0.2);
+}
+
+.event_poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+  .event {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+    padding: 20px;
+    margin: 50px auto;
+  }
+  
+  .event_title h2 {
+    font-size: 2.4rem;
+  }
+  
+  .event_info p {
+    font-size: 1.4rem;
+  }
+  
+  .register-btn {
+    font-size: 1.4rem;
+    padding: 10px 20px;
+  }
+  
+  .register-btn ion-icon {
+    font-size: 1.6rem;
+  }
 }
 .event--left {
   grid-template-columns: 400px 1fr;
@@ -638,34 +811,35 @@ p {
     width: 90%;
   }
   .event {
-    gap: 50px;
-    height: 100vh;
+    gap: 30px;
+    min-height: auto;
+    margin: 30px auto;
+    padding: 20px;
   }
   .event--left {
     grid-template-columns: 1fr;
-    grid-template-rows: 400px 1fr;
+    grid-template-rows: 300px auto;
   }
   .event--right {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 400px;
+    grid-template-rows: auto 300px;
   }
   .event_info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
-  /* .event_poster img {
+  .event_poster img {
     display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 400px;
-    height: 500px;
-    aspect-ratio: 1.5;
+    position: relative;
+    width: 100%;
+    height: 250px;
     object-fit: cover;
-  } */
+    border-radius: 10px;
+  }
 }
 @media (max-width: 27em) {
   .events_title {

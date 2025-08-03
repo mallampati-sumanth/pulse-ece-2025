@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html    <main>
+        <div class="admin-header">
+            <h1>User Management</h1>
+            <div class="admin-actions">
+                <a href="/admin/users/create/Student" class="btn-admin btn-primary">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    Add Student
+                </a>n">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Management - Pulse ECE Admin</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="toggle-btn">
+        <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <!-- Header -->
+    <%- include('partials/adminHeader') %>
+    
+    <!-- Admin Sidebar -->
+    <%- include('partials/adminSidebar') %>
+    
+    <main>
+        <div class="admin-header">
+            <h1>User Management</h1>
+            <div class="admin-actions">
+                <a href="/admin/users/create/Student" class="btn-admin btn-primary">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    Add New Student
+                </a>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <% if (users && users.length > 0) { %>
+                <div class="admin-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profile</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Batch/Department</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td data-label="Profile">
+                                        <div class="user-avatar">
+                                            <% if (user.photo) { %>
+                                                <img src="/uploads/<%= user.photo %>" alt="<%= user.name %>">
+                                            <% } else { %>
+                                                <div class="avatar-placeholder">
+                                                    <%= user.name.charAt(0).toUpperCase() %>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </td>
+                                    <td data-label="Name"><%= user.name %></td>
+                                    <td data-label="Email"><%= user.email %></td>
+                                    <td data-label="Role">
+                                        <span class="role-badge <%= user.role %>">
+                                            <%= user.role.charAt(0).toUpperCase() + user.role.slice(1) %>
+                                        </span>
+                                    </td>
+                                    <td data-label="Batch/Department">
+                                        <%= user.batch || user.department || 'N/A' %>
+                                    </td>
+                                    <td data-label="Phone"><%= user.phone %></td>
+                                    <td data-label="Status">
+                                        <span class="status-badge <%= user.isActive ? 'status-active' : 'status-inactive' %>">
+                                            <%= user.isActive ? 'Active' : 'Inactive' %>
+                                        </span>
+                                    </td>
+                                    <td data-label="Actions">
+                                        <div class="operations">
+                                            <a href="/admin/users/<%= user._id %>/edit" class="btn-admin btn-warning">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                                Edit
+                                            </a>
+                                            <% if (user.isActive) { %>
+                                                <form method="POST" action="/admin/users/<%= user._id %>/deactivate" style="display: inline;">
+                                                    <button type="submit" class="btn-admin btn-danger" onclick="return confirm('Are you sure you want to deactivate this user?')">
+                                                        <ion-icon name="ban-outline"></ion-icon>
+                                                        Deactivate
+                                                    </button>
+                                                </form>
+                                            <% } else { %>
+                                                <form method="POST" action="/admin/users/<%= user._id %>/activate" style="display: inline;">
+                                                    <button type="submit" class="btn-admin btn-success" onclick="return confirm('Are you sure you want to activate this user?')">
+                                                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                                        Activate
+                                                    </button>
+                                                </form>
+                                            <% } %>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <h3>No Users Found</h3>
+                    <p>Start by adding your first user to the system.</p>
+                    <a href="/admin/users/create/Student" class="btn-admin btn-primary">Add First User</a>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Mobile menu toggle
+        const toggle_btn = document.querySelector('.toggle-btn');
+        const aside_container = document.querySelector('.aside_container');
+        
+        if (toggle_btn && aside_container) {
+            toggle_btn.addEventListener('click', () => {
+                aside_container.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
+    <!-- Header -->
+    <%- include('partials/adminHeader') %>
+    
+    <!-- Admin Sidebar -->
+    <%- include('partials/adminSidebar') %>
+    
+    <main>
+      <div class="main-content">
+        <div class="page-header">
+          <h1>Students Management</h1>
+          <a href="/admin/users/create/Student" class="btn-primary">+ Add New Student</a>
+        </div>
+        </div>
+        <form action="/admin/users" method="get">
+          <div class="form_sort">
+            <h3>Filter by</h3>
+            <div class="input_control">
+              <input type="email" name="email" id="email" placeholder="Email" />
+            </div>
+            <div class="input_control">
+              <select name="branch" id="branch">
+                <option value="">Select branch</option>
+                <option value="ECE">ECE</option>
+                <option value="CSE">CSE</option>
+                <option value="IOT">IOT</option>
+                <option value="CSIT">CSIT</option>
+                <option value="AIDS">AIDS</option>
+                <option value="MECH">MECH</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="EEE">EEE</option>
+                <option value="BBE">BBE</option>
+              </select>
+            </div>
+            <!-- <div class="input_control">
+              <select name="description" id="branch">
+                <option value="">Select description</option>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+              </select>
+            </div> -->
+            <div class="input_control input_control-btn">
+              <button class="filter-btn">Filter</button>
+            </div>
+          </div>
+        </form>
+        <div class="table_container">
+          <table>
+            <thead>
+              <tr>
+                <th>S.no</th>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Description</th>
+                <th>Phone</th>
+                <th>Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach((user,i) =>{%>
+              <tr>
+                <td><%= i+1 %></td>
+                <td><%= user.name %></td>
+                <td><%= user.branch %></td>
+                <td><%= user.role %></td>
+                <td><%= user.phone %></td>
+                <td>
+                  <div class="operations">
+                    <div class="edit">
+                      <a href="/admin/user/<%= user._id %>">View</a>
+                    </div>
+                    <div class="edit">
+                      <a href="/admin/user/edit/<%= user._id %>">Edit</a>
+                    </div>
+                    <div>
+                      <form
+                        action="/admin/user/delete/<%= user.id %>?_method=DELETE"
+                        method="post"
+                      >
+                        <input type="hidden" name="_method" value="DELETE" />
+
+                        <button class="delete">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% })%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

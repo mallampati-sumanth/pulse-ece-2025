@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   batch: {
     type: String,
-    enum: ['y20', 'y21', 'y22', 'y23', 'Y20', 'Y21', 'Y22', 'Y23'],
+    enum: ['y20', 'y21', 'y22', 'y23', 'y24', 'y25', 'Y20', 'Y21', 'Y22', 'Y23', 'Y24', 'Y25'],
   },
   branch: {
     type: String,

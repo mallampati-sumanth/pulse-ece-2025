@@ -76,7 +76,14 @@ exports.signinPost = async (req, res) => {
     } else {
       req.session.user = user;
     }
-    res.status(200).json({ status: 'Success' });
+    res.status(200).json({ 
+      status: 'Success',
+      user: {
+        role: user.role,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
     console.log(error);
     res.status(400).json({

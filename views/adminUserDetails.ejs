@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details - <%= user.name %> - Pulse ECE</title>
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile Toggle Button -->
+    <button class="toggle-btn">
+        <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <!-- Header -->
+    <%- include('partials/adminHeader') %>
+    
+    <!-- Admin Sidebar -->
+    <%- include('partials/adminSidebar') %>
+    
+    <main>
+        <div class="admin-header">
+            <h1>User Details - <%= user.name %></h1>
+        </div>
+
+        <div class="admin-content">
+            <!-- User Profile Card -->
+            <div class="user-profile-card">
+                <div class="user-header">
+                    <div class="user-avatar">
+                        <% if (user.photo) { %>
+                            <img src="/uploads/<%= user.photo %>" alt="<%= user.name %>">
+                        <% } else { %>
+                            <div class="avatar-placeholder">
+                                <%= user.name.charAt(0).toUpperCase() %>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="user-info">
+                        <h1><%= user.name %></h1>
+                        <span class="role-badge <%= user.role %>"><%= user.role.charAt(0).toUpperCase() + user.role.slice(1) %></span>
+                    </div>
+                </div>
+            
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            Email Address
+                        </div>
+                        <div class="info-value"><%= user.email %></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="call-outline"></ion-icon>
+                            Phone Number
+                        </div>
+                        <div class="info-value"><%= user.phone %></div>
+                    </div>
+                    <% if (user.batch) { %>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="school-outline"></ion-icon>
+                            Batch
+                        </div>
+                        <div class="info-value"><%= user.batch %></div>
+                    </div>
+                    <% } %>
+                    <% if (user.branch) { %>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="library-outline"></ion-icon>
+                            Branch
+                        </div>
+                        <div class="info-value"><%= user.branch %></div>
+                    </div>
+                    <% } %>
+                    <% if (user.blood) { %>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="water-outline"></ion-icon>
+                            Blood Group
+                        </div>
+                        <div class="info-value"><%= user.blood %></div>
+                    </div>
+                    <% } %>
+                    <div class="info-item">
+                        <div class="info-label">
+                            <ion-icon name="id-card-outline"></ion-icon>
+                            User ID
+                        </div>
+                        <div class="info-value"><%= user._id %></div>
+                    </div>
+                </div>
+
+                <!-- Pulse Registration Status -->
+                <% if (pulseRegistration) { %>
+                    <div class="pulse-status pulse-member">
+                        <div class="status-header">
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                            <h3>Pulse Club Member</h3>
+                        </div>
+                        <div class="status-details">
+                            <p><strong>Wing:</strong> <%= pulseRegistration.wing %></p>
+                            <p><strong>Joined:</strong> <%= new Date(pulseRegistration.createdAt || Date.now()).toLocaleDateString() %></p>
+                            <% if (pulseRegistration.skills) { %>
+                                <p><strong>Skills:</strong> <%= pulseRegistration.skills %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="pulse-status not-member">
+                        <div class="status-header">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            <h3>Not a Pulse Club Member</h3>
+                        </div>
+                        <p>This user has not registered for Pulse club membership.</p>
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- Event Registrations -->
+            <div class="registrations-section">
+                <div class="section-header">
+                    <h2>Event Registrations</h2>
+                    <span class="count-badge"><%= registrations.length %></span>
+                </div>
+                
+                <% if (registrations.length > 0) { %>
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Category</th>
+                                    <th>Event Date</th>
+                                    <th>Registration Date</th>
+                                    <th>Status</th>
+                                    <th>Team Event</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% registrations.forEach(registration => { %>
+                                    <tr>
+                                        <td data-label="Event">
+                                            <% if (registration.event) { %>
+                                                <div class="event-cell">
+                                                    <strong><%= registration.event.title %></strong>
+                                                    <small><%= registration.event.venue %></small>
+                                                </div>
+                                            <% } else { %>
+                                                <span class="deleted-event">Event Deleted</span>
+                                            <% } %>
+                                        </td>
+                                        <td data-label="Category">
+                                            <%= registration.event ? registration.event.category : 'N/A' %>
+                                        </td>
+                                        <td data-label="Event Date">
+                                            <%= registration.event ? new Date(registration.event.date).toLocaleDateString() : 'N/A' %>
+                                        </td>
+                                        <td data-label="Registration Date">
+                                            <%= new Date(registration.registrationDate).toLocaleDateString() %>
+                                        </td>
+                                        <td data-label="Status">
+                                            <span class="status-badge status-<%= registration.status.toLowerCase() %>">
+                                                <%= registration.status %>
+                                            </span>
+                                        </td>
+                                        <td data-label="Team Event">
+                                            <div class="team-info">
+                                                <%= registration.isTeamEvent ? 'Yes' : 'No' %>
+                                                <% if (registration.isTeamEvent && registration.teamMembers.length > 0) { %>
+                                                    <small>(<%= registration.teamMembers.length %> members)</small>
+                                                <% } %>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } else { %>
+                    <div class="empty-state">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <h3>No Event Registrations</h3>
+                        <p>This user has not registered for any events yet.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // Mobile menu toggle
+        const toggle_btn = document.querySelector('.toggle-btn');
+        const aside_container = document.querySelector('.aside_container');
+        
+        if (toggle_btn && aside_container) {
+            toggle_btn.addEventListener('click', () => {
+                aside_container.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

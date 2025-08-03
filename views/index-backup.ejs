@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./../imgs/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="./../imgs/apple-touch-icon.png" />
+    <link rel="manifest" href="./../imgs/site.webmanifest" />
+    <title>Pulse ECE - KL University | Version 2.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+    <link rel="stylesheet" href="/styles/index.css" />
+    
+    <!-- Additional CSS for modern home page -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Ionicons for modern icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  </head>
+  <body>
+    <div class="loader_container">
+      <div class="svg_container-loader">
+        <svg
+          class="res_cap_svg"
+          width="484"
+          height="53"
+          viewBox="0 0 484 53"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="resistor"
+            d="M0 22.432H21.3213L34.6243 9L57.4035 32L80.1826 9L102.962 32L125.741 9L148.52 32L157.996 22.432H182"
+            stroke="white"
+            stroke-width="1.1"
+          />
+          <path
+            class="inductor"
+            d="M294 22.8416H326C327.833 14.6749 334.2 -1.05844 345 1.34156C358.5 4.34156 359 42.8416 352 50.8416C345 58.8416 341.5 6.34155 367 1.34156C392.5 -3.65842 379.5 47.8416 377 50.8416C374.5 53.8416 367 3.84155 396 1.34156C425 -1.15842 405 60.8416 402 50.8416C399 40.8416 404.5 1.34156 423.5 1.34156C442.5 1.34156 434 62.8416 430 50.8416C426.8 41.2416 434.667 28.1749 439 22.8416H483.5"
+            stroke="white"
+          />
+        </svg>
+        <svg
+          class="capacitor_svg"
+          width="184"
+          height="63"
+          viewBox="0 0 90 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path class="capacitor" d="M0 15.5H40V31V0" />
+          <path
+            class="capacitor"
+            d="M89.0841 15.7184L49.0847 15.4998L49.1695 1.36718e-06L49 30.9995"
+          />
+        </svg>
+      </div>
+    </div>
+    
+    <!-- YouTube Video Hero Section -->
+    <section class="video-hero-section">
+      <div class="video-background">
+        <iframe 
+          id="youtube-video"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1"
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+        <div class="video-overlay"></div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="hero-text-container">
+          <div class="pulse-logo-hero">
+            <img src="/imgs/pulse-logo.png" alt="Pulse ECE" class="logo-main" />
+          </div>
+          
+          <h1 class="hero-title">
+            <span class="title-line-1">PULSE ECE</span>
+            <span class="title-line-2">Department of Electronics</span>
+            <span class="title-line-3">& Communication Engineering</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Student Body Association | KL University
+          </p>
+          
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-count="500">0</span>
+              <span class="stat-label">Active Students</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="50">0</span>
+              <span class="stat-label">Events</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="25">0</span>
+              <span class="stat-label">Clubs</span>
+            </div>
+          </div>
+          
+          <div class="hero-actions">
+            <a href="/events" class="cta-button primary">
+              <ion-icon name="calendar-outline"></ion-icon>
+              Explore Events
+            </a>
+            <a href="/joinpulse" class="cta-button secondary">
+              <ion-icon name="add-circle-outline"></ion-icon>
+              Join Pulse
+            </a>
+          </div>
+          
+          <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Sections -->
+    <main class="main-content">
+      <!-- Quick Access Section -->
+      <section class="quick-access-section">
+        <div class="container">
+          <h2 class="section-title">Quick Access</h2>
+          <div class="quick-access-grid">
+            <div class="access-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-icon">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </div>
+              <h3>Upcoming Events</h3>
+              <p>Join exciting technical and cultural events</p>
+              <a href="/events" class="card-link">View Events</a>
+            </div>
+            
+            <div class="access-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="card-icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </div>
+              <h3>Blood Donation</h3>
+              <p>Save lives through blood donation drives</p>
+              <a href="/blood" class="card-link">Donate Now</a>
+            </div>
+            
+            <div class="access-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="card-icon">
+                <ion-icon name="trophy-outline"></ion-icon>
+              </div>
+              <h3>Clubs & Teams</h3>
+              <p>Explore technical and cultural clubs</p>
+              <a href="/club" class="card-link">Join Clubs</a>
+            </div>
+            
+            <div class="access-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="card-icon">
+                <ion-icon name="images-outline"></ion-icon>
+              </div>
+              <h3>Gallery</h3>
+              <p>Memories from our events and activities</p>
+              <a href="/gallery" class="card-link">View Gallery</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about-section">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+              <h2>About Pulse ECE</h2>
+              <p class="lead-text">
+                We are the dynamic student body association of the Department of Electronics 
+                and Communication Engineering at KL University, committed to fostering 
+                innovation, collaboration, and excellence in the field of ECE.
+              </p>
+              <div class="about-features">
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span>Technical Excellence</span>
+                </div>
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span>Cultural Activities</span>
+                </div>
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span>Community Service</span>
+                </div>
+                <div class="feature-item">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span>Innovation Hub</span>
+                </div>
+              </div>
+              <a href="/aboutus" class="learn-more-btn">Learn More About Us</a>
+            </div>
+            <div class="about-visual" data-aos="fade-left">
+              <div class="circuit-animation">
+                <div class="circuit-board">
+                  <div class="circuit-line"></div>
+                  <div class="circuit-node"></div>
+                  <div class="circuit-component"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Credit Section -->
+      <section class="credit-section">
+        <div class="container">
+          <div class="credit-content" data-aos="fade-up">
+            <div class="version-badge">
+              <span class="version-text">Version 2.0</span>
+            </div>
+            <h3>Created & Reworked by</h3>
+            <h2 class="developer-name">MALLAMPATI SUMANTH</h2>
+            <p class="credit-description">
+              Enhanced with modern design, improved user experience, and cutting-edge web technologies
+            </p>
+            <div class="tech-stack">
+              <span class="tech-item">Node.js</span>
+              <span class="tech-item">Express</span>
+              <span class="tech-item">MongoDB</span>
+              <span class="tech-item">Three.js</span>
+              <span class="tech-item">GSAP</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <div id="canvas_container">
+      <section class="hero_section">
+        <div class="hero_img">
+          <img src="/imgs/textured-pulse.png" alt="" />
+          <h1>
+            Student body association of Department of Electronics and
+            Communication Engineering,KL University
+          </h1>
+        </div>
+      </section>
+    </div>
+    <svg class="cursor" width="70" height="70" viewBox="0 0 140 140">
+      <defs>
+        <filter
+          id="filter-1"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0"
+            numOctaves="10"
+            result="warp"
+          ></feTurbulence>
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="60"
+            in="SourceGraphic"
+            in2="warp"
+          ></feDisplacementMap>
+        </filter>
+      </defs>
+      <circle
+        class="cursor__inner"
+        cx="70"
+        cy="70"
+        r="60"
+        style="stroke-width: 1px; filter: none"
+      ></circle>
+    </svg>
+    <div class="navbar">
+      <span></span>
+
+      <div class="pulse_logo">
+        <a href="/">
+          <img src="./../imgs/pulse-logo.png" alt="" />
+        </a>
+      </div>
+      <div class="nav_menu">
+        <ul class="nav_items">
+          <li class="nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/aboutus">About</a></li>
+          <li class="nav-item"><a href="/events">Events</a></li>
+          <li class="nav-item"><a href="/club">Clubs</a></li>
+          <li class="nav-item"><a href="/gallery">Gallery</a></li>
+          <li class="nav-item"><a href="/faculty-core">Faculty</a></li>
+          <li class="nav-item"><a href="/blood">Blood</a></li>
+          <li class="nav-item"><a href="/team">Team</a></li>
+          <li class="nav-item"><a href="/contactus">Contact</a></li>
+          <% if(typeof session.user === 'undefined' || !session.user) {%>
+          <li class="nav-item"><a href="/signin">Sign in</a></li>
+          <li class="nav-item"><a href="/signup">Sign up</a></li>
+          <%}%> <% if(typeof session.user !== 'undefined' && session.user) {%>
+          <li class="nav-item"><a href="/profile">Profile</a></li>
+          <li class="nav-item"><a href="/logout">Logout</a></li>
+
+          <%}%>
+
+          <li>
+            <ul class="socialmedia-icon">
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="socialmedia_icons">
+                <a href="#">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="menu-btn">
+        <div class="menu-btn-burger"></div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/scripts/cursor-hover.js"></script>
+    <script src="/scripts/three.js"></script>
+    <script src="/scripts/index.js"></script>
+    
+    <!-- New home page hero scripts -->
+    <script src="/scripts/home-hero.js"></script>
+    
+    <!-- Custom script for enhanced interactions -->
+    <script>
+      // Additional home page enhancements
+      document.addEventListener('DOMContentLoaded', function() {
+        // Enhanced cursor effects for CTA buttons
+        const ctaButtons = document.querySelectorAll('.cta-button');
+        ctaButtons.forEach(button => {
+          button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+          });
+          
+          button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+          });
+        });
+        
+        // Smooth reveal animations for sections
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        });
+        
+        document.querySelectorAll('.section-title, .access-card, .about-text, .credit-content').forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'all 0.6s ease-out';
+          observer.observe(el);
+        });
+        
+        // Video error handling
+        const video = document.getElementById('youtube-video');
+        if (video) {
+          video.addEventListener('error', function() {
+            console.log('Video failed to load, falling back to background image');
+            const videoSection = document.querySelector('.video-hero-section');
+            if (videoSection) {
+              videoSection.style.background = 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("/imgs/pulse-bg.png")';
+              videoSection.style.backgroundSize = 'cover';
+              videoSection.style.backgroundPosition = 'center';
+            }
+          });
+        }
+        
+        // Hide original canvas container for new design
+        const canvasContainer = document.getElementById('canvas_container');
+        if (canvasContainer) {
+          canvasContainer.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

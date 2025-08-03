@@ -47,7 +47,7 @@
           class="capacitor_svg"
           width="184"
           height="63"
-          viewBox="0 0 90 32"
+           viewBox="0 0 90 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -156,75 +156,123 @@
       </div>
 
       <div class="events_container">
-        <div class="event event--left event1">
-          <div class="event_poster">
-            <img src="./../imgs/events/events-schedule1-black.jpeg" alt="">
-            <img src="./../imgs/events/events-schedule1.jpeg" alt="">
+        <% if (events && events.length > 0) { %>
+          <% events.forEach((event, index) => { %>
+            <div class="event <%= index % 2 === 0 ? 'event--left' : 'event--right' %> event<%= index + 1 %>">
+              <% if (index % 2 === 0) { %>
+                <div class="event_poster">
+                  <% if (event.poster) { %>
+                    <img src="/uploads/events/<%= event.poster %>" alt="<%= event.title %>">
+                  <% } else { %>
+                    <img src="/imgs/events/events-schedule1-black.jpeg" alt="<%= event.title %>">
+                    <img src="/imgs/events/events-schedule1.jpeg" alt="<%= event.title %>">
+                  <% } %>
+                </div>
+                <div class="event_info">
+                  <div class="event_title">
+                    <h2><%= event.title %></h2>
+                  </div>
+                  <div class="event_details">
+                    <p><span class="detail-label">DATE</span> : <%= new Date(event.date).toLocaleDateString() %></p>
+                    <p><span class="detail-label">TIME</span> : <%= event.time %></p>
+                    <p><span class="detail-label">VENUE</span> : <%= event.venue %></p>
+                    <% if (event.entryFee > 0) { %>
+                      <p><span class="detail-label">FEE</span> : ₹<%= event.entryFee %></p>
+                    <% } %>
+                    <p><span class="detail-label">CATEGORY</span> : <%= event.category %></p>
+                  </div>
+                  
+                  <div class="explore">
+                    <a href="/events/<%= event._id %>">
+                      View Details <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </a>
+                  </div>
+                  
+                  <div class="event_register">
+                    <% if (event.isRegistrationOpen) { %>
+                      <% if (session.user) { %>
+                        <a href="#" onclick="registerForEvent('<%= event._id %>')" class="register-btn register-open">
+                          <ion-icon name="calendar-outline"></ion-icon>
+                          Register Now
+                        </a>
+                      <% } else { %>
+                        <a href="/signin" class="register-btn register-login">
+                          <ion-icon name="log-in-outline"></ion-icon>
+                          Login to Register
+                        </a>
+                      <% } %>
+                    <% } else { %>
+                      <button class="register-btn register-closed" disabled>
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                        Registration Closed
+                      </button>
+                    <% } %>
+                  </div>
+                </div>
+              <% } else { %>
+                <div class="event_info">
+                  <div class="event_title">
+                    <h2><%= event.title %></h2>
+                  </div>
+                  <div class="event_details">
+                    <p><span class="detail-label">DATE</span> : <%= new Date(event.date).toLocaleDateString() %></p>
+                    <p><span class="detail-label">TIME</span> : <%= event.time %></p>
+                    <p><span class="detail-label">VENUE</span> : <%= event.venue %></p>
+                    <% if (event.entryFee > 0) { %>
+                      <p><span class="detail-label">FEE</span> : ₹<%= event.entryFee %></p>
+                    <% } %>
+                    <p><span class="detail-label">CATEGORY</span> : <%= event.category %></p>
+                  </div>
+                  
+                  <div class="explore">
+                    <a href="/events/<%= event._id %>">
+                      View Details <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </a>
+                  </div>
+                  
+                  <div class="event_register">
+                    <% if (event.isRegistrationOpen) { %>
+                      <% if (session.user) { %>
+                        <a href="#" onclick="registerForEvent('<%= event._id %>')" class="register-btn register-open">
+                          <ion-icon name="calendar-outline"></ion-icon>
+                          Register Now
+                        </a>
+                      <% } else { %>
+                        <a href="/signin" class="register-btn register-login">
+                          <ion-icon name="log-in-outline"></ion-icon>
+                          Login to Register
+                        </a>
+                      <% } %>
+                    <% } else { %>
+                      <button class="register-btn register-closed" disabled>
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                        Registration Closed
+                      </button>
+                    <% } %>
+                  </div>
+                </div>
+                <div class="event_poster">
+                  <% if (event.poster) { %>
+                    <img src="/uploads/events/<%= event.poster %>" alt="<%= event.title %>">
+                  <% } else { %>
+                    <img src="/imgs/events/events-schedule<%= (index % 6) + 1 %>-black.jpeg" alt="<%= event.title %>">
+                    <img src="/imgs/events/events-schedule<%= (index % 6) + 1 %>.jpeg" alt="<%= event.title %>">
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div style="text-align: center; padding: 50px; color: white;">
+            <h2>No events scheduled at the moment</h2>
+            <p>Stay tuned for upcoming events!</p>
           </div>
-          <div class="event_info">
-            <div class="event_title">
-              <h2>TEJOMAYAM 2024</h2>
-            </div>
-            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
-
-            <div class="explore">
-              <a href="/gallery"
-                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
-              ></a>
-            </div>
-            <div class="event_register">
-              <a href="#">Register</a>
-            </div>
-          </div>
+        <% } %>
+        
+        <div class="join__pulse">
+          <div class="join__pulse-bg"></div>
+          <a href="/joinpulse" class="join__pulse-btn"></a>
         </div>
-
-        <div class="event event--right event2">
-          <div class="event_info">
-            <div class="event_title">
-              <h2>Musically Mad</h2>
-            </div>
-            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
-
-            <div class="explore">
-              <a href="/gallery"
-                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
-              ></a>
-            </div>
-            <div class="event_register">
-              <a href="#">Register</a>
-            </div>
-          </div>
-          <div class="event_poster">
-            <img src="./../imgs/events/events-schedule2-black.jpeg" alt="">
-            <img src="./../imgs/events/events-schedule2.jpeg" alt="">
-          </div>
-        </div>
-
-        <div class="event event--left event3">
-          <div class="event_poster">
-            <img src="/imgs/events/events-schedule3-black.jpeg" alt="">
-            <img src="/imgs/events/events-schedule3.jpeg" alt="">
-          </div>
-          <div class="event_info">
-            <div class="event_title">
-              <h2>Idol of ECE 2024</h2>
-            </div>
-            <p><span style="color: #2b8a3e">DATE</span> : 10-02-2024</p>
-
-            <div class="explore">
-              <a href="/gallery"
-                >Explore More <ion-icon name="arrow-forward-outline"></ion-icon
-              ></a>
-            </div>
-            <div class="event_register">
-              <a href="#">Register</a>
-            </div>
-          </div>
-        </div>
-         <div class="join__pulse">
-        <div class="join__pulse-bg"></div>
-        <a href="/joinpulse" class="join__pulse-btn"></a>
-      </div>
       </div>
         <div class="contact_footer">
         <div class="footer_logo">
@@ -273,5 +321,55 @@
     <script src="/scripts/hover-effect.umd.js"></script>
     <script src="/scripts/cursor-hover.js"></script>
     <script src="/scripts/events.js"></script>
+    <script>
+      function registerForEvent(eventId) {
+        if (confirm('Are you sure you want to register for this event?')) {
+          // Show loading state
+          const registerBtns = document.querySelectorAll(`[onclick="registerForEvent('${eventId}')"]`);
+          registerBtns.forEach(btn => {
+            btn.style.opacity = '0.6';
+            btn.style.pointerEvents = 'none';
+            btn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon> Registering...';
+          });
+
+          fetch('/events/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ eventId: eventId })
+          })
+          .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+          })
+          .then(data => {
+            console.log('Response data:', data);
+            if (data.status === 'Success') {
+              alert('Successfully registered for the event!');
+              location.reload();
+            } else {
+              alert('Error: ' + (data.message || data.error || 'Registration failed'));
+              // Reset button state
+              registerBtns.forEach(btn => {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+                btn.innerHTML = '<ion-icon name="calendar-outline"></ion-icon> Register Now';
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+            alert('Network error: Unable to register for event. Please check your connection.');
+            // Reset button state
+            registerBtns.forEach(btn => {
+              btn.style.opacity = '1';
+              btn.style.pointerEvents = 'auto';
+              btn.innerHTML = '<ion-icon name="calendar-outline"></ion-icon> Register Now';
+            });
+          });
+        }
+      }
+    </script>
   </body>
 </html>
