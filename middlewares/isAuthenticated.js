@@ -56,7 +56,9 @@ exports.authorized = (req, res, next) => {
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
-    if (!req.session.user || !roles.includes(req.session.user.role)) {
+    // Check session first, then fallback to JWT user
+    const user = req.session.user || req.user;
+    if (!user || !roles.includes(user.role)) {
       return res.redirect('/');
     }
     next();
