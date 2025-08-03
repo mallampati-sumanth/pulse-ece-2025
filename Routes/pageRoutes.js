@@ -34,6 +34,9 @@ pageRouter
 pageRouter
   .route('/signup')
   .get(pageController.sigupGet);
+pageRouter
+  .route('/auth')
+  .get(pageController.authGet);
 pageRouter.route('/team').get(pageController.team);
 pageRouter
   .route('/blood')

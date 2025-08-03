@@ -6,16 +6,26 @@ const multer = require('multer');
 const crypto = require('crypto');
 
 exports.siginGet = (req, res) => {
-  res.render('signin');
+  // Redirect to new modern auth interface
+  res.redirect('/auth');
 };
 exports.sigupGet = (req, res) => {
-  res.render('signup');
+  // Redirect to new modern auth interface
+  res.redirect('/auth');
+};
+exports.authGet = (req, res) => {
+  res.render('auth', {
+    error: req.query.error || null,
+    success: req.query.success || null
+  });
 };
 exports.team = (req, res) => {
   res.render('team');
 };
 exports.index = (req, res) => {
-  res.render('index');
+  res.render('index-modern', {
+    session: req.session || {}
+  });
 };
 exports.bloodGet = async (req, res) => {
   const users = await User.find();

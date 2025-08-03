@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse ECE - KL University</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/imgs/apple-touch-icon.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/index-modern.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="/imgs/pulse-logo.png" alt="Pulse ECE" class="logo-img">
+                <span class="logo-text">Pulse ECE</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/aboutus" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/events" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="/club" class="nav-link">Clubs</a></li>
+                <li class="nav-item"><a href="/gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="/team" class="nav-link">Team</a></li>
+                <li class="nav-item"><a href="/contactus" class="nav-link">Contact</a></li>
+                
+                <% if(typeof session.user === 'undefined' || !session.user) {%>
+                <li class="nav-item">
+                    <a href="/auth" class="nav-link nav-cta">Login</a>
+                </li>
+                <%}%>
+                
+                <% if(typeof session.user !== 'undefined' && session.user) {%>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        <span class="user-name"><%= session.user.name %></span>
+                        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <path d="M6 8.5L2.5 5H9.5L6 8.5Z"/>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile" class="dropdown-link">Profile</a></li>
+                        <% if(session.user.role === 'admin') {%>
+                        <li><a href="/admin" class="dropdown-link">Admin Panel</a></li>
+                        <%}%>
+                        <li><a href="/logout" class="dropdown-link">Logout</a></li>
+                    </ul>
+                </li>
+                <%}%>
+            </ul>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
+            <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-title">Welcome to</span>
+                    <span class="brand-title">Pulse ECE</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Connecting Minds, Creating Tomorrow. Empowering the next generation of Electronics & Communication Engineers at KL University. 
+                    Join the most vibrant ECE student community.
+                </p>
+                
+                <!-- Interactive Tech Stack -->
+                <div class="tech-stack">
+                    <div class="tech-item" data-tech="IoT">
+                        <div class="tech-icon">🌐</div>
+                        <span>IoT</span>
+                    </div>
+                    <div class="tech-item" data-tech="AI/ML">
+                        <div class="tech-icon">🤖</div>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="tech-item" data-tech="Robotics">
+                        <div class="tech-icon">🤖</div>
+                        <span>Robotics</span>
+                    </div>
+                    <div class="tech-item" data-tech="5G">
+                        <div class="tech-icon">📡</div>
+                        <span>5G</span>
+                    </div>
+                    <div class="tech-item" data-tech="VLSI">
+                        <div class="tech-icon">⚡</div>
+                        <span>VLSI</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <% if(typeof session.user === 'undefined' || !session.user) {%>
+                    <a href="/auth" class="btn btn-primary btn-glow">
+                        <span class="btn-text">Join Our Community</span>
+                        <div class="btn-particles"></div>
+                    </a>
+                    <%}%>
+                    <a href="/aboutus" class="btn btn-secondary btn-hologram">
+                        <span class="btn-text">Explore Universe</span>
+                        <div class="hologram-effect"></div>
+                    </a>
+                </div>
+                
+                <!-- Real-time Activity Feed -->
+                <div class="activity-feed">
+                    <div class="activity-header">
+                        <div class="pulse-dot"></div>
+                        <span>Live Activity</span>
+                    </div>
+                    <div class="activity-items">
+                        <div class="activity-item">
+                            <span class="activity-user">John Doe</span>
+                            <span class="activity-action">joined IoT Workshop</span>
+                            <span class="activity-time">2m ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-user">Sarah Tech</span>
+                            <span class="activity-action">shared a project</span>
+                            <span class="activity-time">5m ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-user">Alex Code</span>
+                            <span class="activity-action">completed ML course</span>
+                            <span class="activity-time">8m ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat interactive-stat" data-end="500">
+                        <div class="stat-circle">
+                            <svg class="stat-progress" viewBox="0 0 36 36">
+                                <path class="stat-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="stat-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Active Members</div>
+                    </div>
+                    <div class="stat interactive-stat" data-end="50">
+                        <div class="stat-circle">
+                            <svg class="stat-progress" viewBox="0 0 36 36">
+                                <path class="stat-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="stat-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Events Hosted</div>
+                    </div>
+                    <div class="stat interactive-stat" data-end="25">
+                        <div class="stat-circle">
+                            <svg class="stat-progress" viewBox="0 0 36 36">
+                                <path class="stat-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="stat-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Technical Workshops</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <!-- 3D Holographic Card -->
+                <div class="holographic-card">
+                    <div class="card-layers">
+                        <div class="card-layer layer-1"></div>
+                        <div class="card-layer layer-2"></div>
+                        <div class="card-layer layer-3"></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="logo-container">
+                            <img src="/imgs/pulse-logo.png" alt="Pulse ECE Logo" class="hero-logo">
+                            <div class="logo-ring"></div>
+                            <div class="logo-particles"></div>
+                        </div>
+                        <div class="data-visualization">
+                            <div class="data-stream"></div>
+                            <div class="waveform"></div>
+                        </div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-chip chip-1">
+                            <div class="chip-glow"></div>
+                        </div>
+                        <div class="floating-chip chip-2">
+                            <div class="chip-glow"></div>
+                        </div>
+                        <div class="floating-chip chip-3">
+                            <div class="chip-glow"></div>
+                        </div>
+                        <div class="floating-chip chip-4">
+                            <div class="chip-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive Scroll Indicator -->
+        <div class="scroll-indicator interactive-scroll">
+            <div class="scroll-text">Scroll to Explore</div>
+            <div class="scroll-arrow">
+                <div class="arrow-line"></div>
+                <div class="arrow-head"></div>
+            </div>
+            <div class="scroll-progress">
+                <div class="progress-ring">
+                    <svg viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" class="progress-bg"/>
+                        <circle cx="25" cy="25" r="20" class="progress-fill"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Community Hub -->
+    <section class="student-community">
+        <div class="container">
+            <h2 class="section-title neon-title">Our Vibrant Student Community</h2>
+            
+            <!-- Student Statistics -->
+            <div class="community-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Active Students</div>
+                    <div class="stat-description">From all ECE batches</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Academic Years</div>
+                    <div class="stat-description">Y22, Y23, Y24, Y25</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value">25+</div>
+                    <div class="stat-label">Study Groups</div>
+                    <div class="stat-description">Collaborative learning</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Achievements</div>
+                    <div class="stat-description">Student accomplishments</div>
+                </div>
+            </div>
+            
+            <!-- Student Activities -->
+            <div class="student-activities">
+                <div class="activity-category">
+                    <div class="category-header">
+                        <div class="category-icon">🤝</div>
+                        <h3>Community Engagement</h3>
+                    </div>
+                    <div class="activity-items">
+                        <div class="activity-item">
+                            <div class="activity-title">Peer Mentoring Program</div>
+                            <div class="activity-desc">Senior students guide juniors through academics and career planning</div>
+                            <div class="activity-status active">Active</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Study Buddy System</div>
+                            <div class="activity-desc">Match students for collaborative learning and exam preparation</div>
+                            <div class="activity-status active">Active</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Blood Donation Drives</div>
+                            <div class="activity-desc">Regular community service initiatives for social impact</div>
+                            <div class="activity-status upcoming">Upcoming</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-category">
+                    <div class="category-header">
+                        <div class="category-icon">📖</div>
+                        <h3>Academic Support</h3>
+                    </div>
+                    <div class="activity-items">
+                        <div class="activity-item">
+                            <div class="activity-title">Doubt Clearing Sessions</div>
+                            <div class="activity-desc">Weekly sessions to resolve academic queries and concepts</div>
+                            <div class="activity-status active">Weekly</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Resource Sharing Hub</div>
+                            <div class="activity-desc">Digital library of notes, assignments, and study materials</div>
+                            <div class="activity-status active">24/7</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Exam Strategy Workshops</div>
+                            <div class="activity-desc">Preparation techniques and time management for better results</div>
+                            <div class="activity-status upcoming">Next Week</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-category">
+                    <div class="category-header">
+                        <div class="category-icon">🎉</div>
+                        <h3>Social Events</h3>
+                    </div>
+                    <div class="activity-items">
+                        <div class="activity-item">
+                            <div class="activity-title">Freshers Welcome Party</div>
+                            <div class="activity-desc">Grand welcome celebration for new ECE students</div>
+                            <div class="activity-status completed">Completed</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Annual Cultural Fest</div>
+                            <div class="activity-desc">Showcase of student talents in arts, music, and dance</div>
+                            <div class="activity-status upcoming">Feb 2025</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-title">Alumni Meet & Greet</div>
+                            <div class="activity-desc">Networking opportunities with successful ECE graduates</div>
+                            <div class="activity-status upcoming">Mar 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Student Testimonials -->
+            <div class="student-testimonials">
+                <h3 class="testimonials-title">What Our Students Say</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Pulse ECE has been instrumental in fostering academic excellence and innovation among our students. The community spirit here is remarkable!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">HD</div>
+                            <div class="author-info">
+                                <div class="author-name">Dr. HOD</div>
+                                <div class="author-batch">Head of Department - ECE</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Leading Pulse ECE has been an amazing journey. The collaboration and dedication of our members inspire me every day!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PK</div>
+                            <div class="author-info">
+                                <div class="author-name">President</div>
+                                <div class="author-batch">Pulse ECE President</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Managing club activities and seeing students grow through our programs is incredibly rewarding. Great team work!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">CI</div>
+                            <div class="author-info">
+                                <div class="author-name">Club In-charge</div>
+                                <div class="author-batch">Club Coordinator</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access">
+        <div class="container">
+            <h2 class="section-title">Quick Access</h2>
+            <div class="quick-grid">
+                <a href="/events" class="quick-card">
+                    <div class="quick-icon events-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H18V1H16V3H8V1H6V3H5C3.89 3 3.01 3.9 3.01 5L3 19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19ZM7 10H12V15H7V10Z"/>
+                        </svg>
+                    </div>
+                    <h3>Events</h3>
+                    <p>Discover upcoming workshops, seminars, and tech talks</p>
+                </a>
+                
+                <a href="/gallery" class="quick-card">
+                    <div class="quick-icon gallery-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z"/>
+                        </svg>
+                    </div>
+                    <h3>Gallery</h3>
+                    <p>Browse memories from our amazing events and activities</p>
+                </a>
+                
+                <a href="/team" class="quick-card">
+                    <div class="quick-icon team-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 4C18.2 4 20 5.8 20 8S18.2 12 16 12 12 10.2 12 8 13.8 4 16 4M16 14C20.4 14 24 15.8 24 18V20H8V18C8 15.8 11.6 14 16 14M8.5 4C10.7 4 12.5 5.8 12.5 8S10.7 12 8.5 12 4.5 10.2 4.5 8 6.3 4 8.5 4M8.5 14C12.9 14 16.5 15.8 16.5 18V20H0V18C0 15.8 3.6 14 8.5 14Z"/>
+                        </svg>
+                    </div>
+                    <h3>Our Team</h3>
+                    <p>Meet the dedicated team behind Pulse ECE</p>
+                </a>
+                
+                <a href="/contactus" class="quick-card">
+                    <div class="quick-icon contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                        </svg>
+                    </div>
+                    <h3>Contact</h3>
+                    <p>Get in touch with us for any queries or suggestions</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Learning Paths -->
+    <section class="learning-paths">
+        <div class="container">
+            <h2 class="section-title">Choose Your Learning Path</h2>
+            <div class="paths-container">
+                <div class="learning-path" data-path="beginner">
+                    <div class="path-header">
+                        <div class="path-icon">🚀</div>
+                        <h3 class="path-title">Beginner</h3>
+                        <div class="path-level">Level 1-3</div>
+                    </div>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-progress="0"></div>
+                        </div>
+                        <span class="progress-text">Start your journey</span>
+                    </div>
+                    <div class="path-modules">
+                        <div class="module completed">
+                            <div class="module-icon">✓</div>
+                            <span>Electronics Basics</span>
+                        </div>
+                        <div class="module current">
+                            <div class="module-icon">📖</div>
+                            <span>Circuit Analysis</span>
+                        </div>
+                        <div class="module locked">
+                            <div class="module-icon">🔒</div>
+                            <span>Digital Logic</span>
+                        </div>
+                        <div class="module locked">
+                            <div class="module-icon">🔒</div>
+                            <span>Microprocessors</span>
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Hours</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="learning-path featured" data-path="intermediate">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="path-header">
+                        <div class="path-icon">⚡</div>
+                        <h3 class="path-title">Intermediate</h3>
+                        <div class="path-level">Level 4-6</div>
+                    </div>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-progress="65"></div>
+                        </div>
+                        <span class="progress-text">65% Complete</span>
+                    </div>
+                    <div class="path-modules">
+                        <div class="module completed">
+                            <div class="module-icon">✓</div>
+                            <span>Embedded Systems</span>
+                        </div>
+                        <div class="module completed">
+                            <div class="module-icon">✓</div>
+                            <span>Signal Processing</span>
+                        </div>
+                        <div class="module current">
+                            <div class="module-icon">📖</div>
+                            <span>IoT Development</span>
+                        </div>
+                        <div class="module available">
+                            <div class="module-icon">📚</div>
+                            <span>Machine Learning</span>
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">28</span>
+                            <span class="stat-label">Hours</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="learning-path" data-path="advanced">
+                    <div class="path-header">
+                        <div class="path-icon">🎓</div>
+                        <h3 class="path-title">Advanced</h3>
+                        <div class="path-level">Level 7-10</div>
+                    </div>
+                    <div class="path-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-progress="30"></div>
+                        </div>
+                        <span class="progress-text">30% Complete</span>
+                    </div>
+                    <div class="path-modules">
+                        <div class="module completed">
+                            <div class="module-icon">✓</div>
+                            <span>Advanced DSP</span>
+                        </div>
+                        <div class="module current">
+                            <div class="module-icon">📖</div>
+                            <span>AI/ML Integration</span>
+                        </div>
+                        <div class="module available">
+                            <div class="module-icon">📚</div>
+                            <span>5G Technology</span>
+                        </div>
+                        <div class="module locked">
+                            <div class="module-icon">🔒</div>
+                            <span>Research Project</span>
+                        </div>
+                    </div>
+                    <div class="path-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">45</span>
+                            <span class="stat-label">Hours</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Tree Visualization -->
+            <div class="skill-tree">
+                <h3 class="skill-tree-title">Interactive Skill Tree</h3>
+                <div class="tree-container">
+                    <svg class="tree-svg" viewBox="0 0 800 400">
+                        <!-- Skill connections -->
+                        <g class="connections">
+                            <path class="skill-connection active" d="M100,350 Q200,300 300,250"></path>
+                            <path class="skill-connection active" d="M300,250 Q400,200 500,150"></path>
+                            <path class="skill-connection" d="M500,150 Q600,100 700,50"></path>
+                            <path class="skill-connection active" d="M300,250 Q400,300 500,350"></path>
+                        </g>
+                        
+                        <!-- Skill nodes -->
+                        <g class="skill-nodes">
+                            <circle class="skill-node completed" cx="100" cy="350" r="20" data-skill="Electronics Basics"></circle>
+                            <circle class="skill-node completed" cx="300" cy="250" r="25" data-skill="Circuit Design"></circle>
+                            <circle class="skill-node current" cx="500" cy="150" r="30" data-skill="Embedded Systems"></circle>
+                            <circle class="skill-node available" cx="500" cy="350" r="25" data-skill="IoT Development"></circle>
+                            <circle class="skill-node locked" cx="700" cy="50" r="20" data-skill="AI Integration"></circle>
+                        </g>
+                        
+                        <!-- Skill labels -->
+                        <g class="skill-labels">
+                            <text x="100" y="380" class="skill-label">Electronics</text>
+                            <text x="300" y="280" class="skill-label">Circuits</text>
+                            <text x="500" y="130" class="skill-label">Embedded</text>
+                            <text x="500" y="380" class="skill-label">IoT</text>
+                            <text x="700" y="30" class="skill-label">AI</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="features-text">
+                    <h2 class="section-title">Why Join Pulse ECE?</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎓</div>
+                            <div class="feature-text">
+                                <h3>Academic Excellence</h3>
+                                <p>Access to study materials, doubt clearing sessions, and academic support</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <div class="feature-text">
+                                <h3>Technical Workshops</h3>
+                                <p>Hands-on workshops on latest technologies and industry trends</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">🤝</div>
+                            <div class="feature-text">
+                                <h3>Networking</h3>
+                                <p>Connect with like-minded peers, seniors, and industry professionals</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">💡</div>
+                            <div class="feature-text">
+                                <h3>Innovation Hub</h3>
+                                <p>Platform to showcase your projects and innovative ideas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-visual">
+                    <div class="feature-card">
+                        <div class="card-header">
+                            <div class="card-title">Latest Updates</div>
+                            <div class="notification-badge">3</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="update-item">
+                                <div class="update-dot"></div>
+                                <div class="update-text">IoT Workshop - Tomorrow</div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-dot"></div>
+                                <div class="update-text">New Project Showcase</div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-dot"></div>
+                                <div class="update-text">Alumni Meet Next Week</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Join the Revolution?</h2>
+                <p class="cta-subtitle">Be part of KL University's most innovative ECE community</p>
+                <% if(typeof session.user === 'undefined' || !session.user) {%>
+                <a href="/auth" class="btn btn-primary btn-large">Get Started Today</a>
+                <%} else {%>
+                <a href="/events" class="btn btn-primary btn-large">Explore Events</a>
+                <%}%>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/imgs/pulse-logo.png" alt="Pulse ECE">
+                        <span>Pulse ECE</span>
+                    </div>
+                    <p class="footer-desc">Empowering ECE students at KL University with knowledge, innovation, and community.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/aboutus">About Us</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
+                        <li><a href="/team">Our Team</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="/club">Clubs</a></li>
+                        <li><a href="/blood">Blood Donation</a></li>
+                        <li><a href="/faculty-core">Faculty</a></li>
+                        <li><a href="/contactus">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pulse ECE - KL University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/scripts/index-modern.js"></script>
+</body>
+</html>

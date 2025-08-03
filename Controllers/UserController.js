@@ -10,15 +10,19 @@ const generateToken = id => {
 };
 exports.signupPost = async (req, res) => {
   try {
-    const { name, email, phone, password, batch, branch, blood } = req.body;
+    const { name, email, phone, password, batch, branch, blood, rollNumber } = req.body;
     const emailLower = email.toLowerCase();
-    const exist = await User.findOne({ email });
+    
+    // Check if user already exists
+    const exist = await User.findOne({ email: emailLower });
     if (exist) {
       return res.status(400).json({
         status: 'Failed',
-        error: 'User already exists ',
+        error: 'User with this email already exists',
       });
     }
+    
+    // Create new user
     const user = await User.create({
       name,
       phone,
@@ -27,24 +31,42 @@ exports.signupPost = async (req, res) => {
       batch,
       branch,
       blood,
+      rollNumber,
     });
 
+    // Send welcome email (commented out for now)
     // const options = {
     //   to: email,
-    //   subject: 'User Created Successfully',
-    //   text: `Dear ${name},\n\nYour Login Id Is Created Successfully.\nPlease Login To Check Your profile  With your Credential\n\n https://${req.headers.host}/signin\n\n\n\n Thanks And Regards\nTeam pulse.`,
+    //   subject: 'Welcome to Pulse ECE',
+    //   text: `Dear ${name},\n\nYour account has been created successfully.\nPlease login with your credentials at: https://${req.headers.host}/auth\n\nThanks and Regards\nTeam Pulse ECE`,
     // };
-
     // await sendMailer(options);
 
     res.status(201).json({
       status: 'Success',
+      message: 'Account created successfully. Please sign in.',
     });
   } catch (error) {
     console.log(error);
+    
+    let errorMessage = 'Registration failed. Please try again.';
+    
+    // Handle specific MongoDB errors
+    if (error.code === 11000) {
+      if (error.keyPattern?.email) {
+        errorMessage = 'This email is already registered.';
+      } else if (error.keyPattern?.rollNumber) {
+        errorMessage = 'This roll number is already registered.';
+      }
+    } else if (error.name === 'ValidationError') {
+      // Get the first validation error
+      const firstError = Object.values(error.errors)[0];
+      errorMessage = firstError.message;
+    }
+    
     res.status(400).json({
       status: 'Failed',
-      error: error._message,
+      error: errorMessage,
     });
   }
 };
@@ -63,32 +85,41 @@ exports.signinPost = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.signin(email, password);
+    
     if (!user) {
       return res.status(400).json({
         status: 'Failed',
-        error: 'Invalid Email or Password',
+        error: 'Invalid email or password',
       });
     }
+    
+    // Generate JWT token
     const token = generateToken(user._id);
-    res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-    if (!req.session.user) {
-      req.session.user = user;
-    } else {
-      req.session.user = user;
-    }
+    res.cookie('jwt', token, { 
+      httpOnly: true, 
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+    
+    // Set session
+    req.session.user = user;
+    
     res.status(200).json({ 
       status: 'Success',
+      message: 'Login successful',
       user: {
         role: user.role,
         name: user.name,
-        email: user.email
+        email: user.email,
+        _id: user._id
       }
     });
   } catch (error) {
-    console.log(error);
+    console.log('Signin error:', error);
     res.status(400).json({
       status: 'Failed',
-      message: ' Invalid Email or Password',
+      error: 'Invalid email or password',
     });
   }
 };
